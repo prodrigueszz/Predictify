@@ -1,16 +1,20 @@
 export type UserProperties = {
+  id: string,
   name: string,
   email: string,
   password: string
 }
 
 export class User {
-  private constructor(private props: UserProperties, private id: string){}
+  private constructor(private props: UserProperties){}
 
-  public static create(props: UserProperties){
-    const id = crypto.randomUUID().toString();
-
-    return new User(props, id);
+  public static create(name: string, email: string, password: string){
+    return new User({
+      id: crypto.randomUUID(),
+      name, 
+      email,
+      password
+    })
   }
 
   public validateEmail(email: string): boolean {
@@ -21,6 +25,14 @@ export class User {
     } else {
       return false;
     }
+  }
+
+  get id(){
+    return this.props.id;
+  }
+
+  get password(){
+    return this.props.password;
   }
 
   get name(){
