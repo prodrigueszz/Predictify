@@ -13,10 +13,12 @@ const createUser = CreateUserUsecase.create(repository);
 app.use(express.json());
 
 app.post("/users", async (req, res) => {
+  const { name, email, password } = req.body;
+
   const userDto = {
-    name: JSON.stringify(req.body['name']),
-    email: JSON.stringify(req.body['email']),
-    password: JSON.stringify(req.body['password']),
+    name,
+    email, 
+    password
   }
 
   res.status(200).send();
