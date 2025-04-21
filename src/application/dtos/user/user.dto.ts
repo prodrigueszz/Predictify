@@ -1,3 +1,5 @@
+import { User } from "../../../domain/entities/user"
+
 export type CreateUserInputDto = {
   name: string,
   email: string,
@@ -14,4 +16,12 @@ export type DeleteUserInputDto = {
 
 export type DeleteUserOutputDto = {
   deletedAt: Date
+}
+
+export type FindUserInputDto = {
+  name: string
+}
+
+export type FindUserOutputDto = {
+  users: User[];
 }

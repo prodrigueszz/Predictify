@@ -12,7 +12,7 @@ export class PostgresUserRepository implements UserGateway {
   async queryExecuter(query: string, values: string[]): Promise<void> {  
     const client = await this.pool.connect();
     client.query(query, values);
-    client.release;
+    client.release();
   }
 
   async save(user: User): Promise<void> {
@@ -40,6 +40,29 @@ export class PostgresUserRepository implements UserGateway {
     }
   }
 
-  // async find(name?: string, email?: string, id?: string){
-  //   }
+  async find(name: string){
+    try {
+      const query = `SELECT * FROM users WHERE name = $1`;
+      const values = [name];
+
+      const client = await this.pool.connect();
+      const { rows } = await client.query(query, values);
+      
+      const users: User[] = rows.map(obj => {
+        return User.create(obj.name, obj.email, obj.password);
+      })
+
+      client.release();
+
+      return users;
+
+    } catch (err) {
+      console.log(err);
+
+      const users: User[] = [];
+
+      return users;
+    }
+
+  }
 }

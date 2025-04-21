@@ -3,6 +3,7 @@ import pgPool from "../../infrastructure/config/database";
 import { PostgresUserRepository } from "../../repositories/user/user.repository";
 import { CreateUserUsecase } from "../../usecases/user/create.user.usecase";
 import { DeleteUserUsecase } from "../../usecases/user/delete-user.usecase";
+import { FindUserUsecase } from "../../usecases/user/find-user.usecase";
 
 export class UserController {
   private static repository: PostgresUserRepository;
@@ -28,16 +29,29 @@ export class UserController {
     })
   }
 
-  public static async delete(request: Request, response: Response){
+  public static async delete(request: Request, response: Response): Promise<void>{
     const { id } = request.params;
 
     const DeleteService = DeleteUserUsecase.create(UserController.createRepository());
 
     const { deletedAt } = await DeleteService.execute({ id });
 
-    response.status(204).json({
+    response.status(200).json({
       message: "sucess",
       deleteAt: deletedAt
+    })
+  }
+
+  public static async find(request: Request, response: Response): Promise<void> {
+    const { name } = request.params;
+
+    const FindService = FindUserUsecase.create(UserController.createRepository());
+
+    const { users } = await FindService.execute({ name });
+    
+    response.status(200).json({
+      message: "sucess",
+      users: users
     })
   }
 }
