@@ -1,3 +1,8 @@
+import { Router } from 'express';
+import { UserController } from '../controllers/user.controller';
 
-export class CreateProductRoute {
-}
+const router = Router();
+
+router.post('/users', UserController.save);
+
+export default router;

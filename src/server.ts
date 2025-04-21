@@ -1,32 +1,19 @@
 import express from 'express';
 import '../src/infrastructure/config/dotenv';
-import pgPool from './infrastructure/config/database';
-import { PostgresUserRepository } from './repositories/user/user.repository';
-import { CreateUserUsecase } from './usecases/user/create.user.usecase';
+import router from './application/routes/user.routes';
 
 const app = express();
 const port = 3000;
 
-const repository = PostgresUserRepository.create(pgPool);
-const createUser = CreateUserUsecase.create(repository);
-
 app.use(express.json());
+app.use(router);
 
-app.post("/users", async (req, res) => {
-  const { name, email, password } = req.body;
 
-  const userDto = {
-    name,
-    email, 
-    password
-  }
-
-  res.status(200).send();
-  console.log(userDto);
-
-  await createUser.execute(userDto);
-
-})
+app.get('/', router);
+app.post('/', router);
+app.put('/', router);
+app.patch('/', router);
+app.delete('/', router);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
