@@ -1,25 +1,26 @@
+import { CreateUserInputDto, CreateUserOutputDto } from "../../application/dtos/user/user.dto";
 import { User } from "../../domain/entities/user";
 import { UserGateway } from "../../repositories/user/interface/user.gateway";
-import { Usecase } from "../usecase";
+import { Usecase } from "../interface/usecase";
 
-export type CreateUserDto = {
-  name: string,
-  email: string,
-  password: string
-}
-
-export class CreateUserUsecase implements Usecase<CreateUserDto> {
+export class CreateUserUsecase implements Usecase<CreateUserInputDto, CreateUserOutputDto> {
   private constructor(private readonly repository: UserGateway){}
 
   public static create(repository: UserGateway){
     return new CreateUserUsecase(repository);
   }
 
-  async execute(input: CreateUserDto): Promise<void> {
+  async execute(input: CreateUserInputDto): Promise<CreateUserOutputDto> {
     const { name, email, password } = input;
 
     const aUser = User.create(name, email, password);
 
     await this.repository.save(aUser);
+
+    const output: CreateUserOutputDto = {
+      createdAt: new Date()
+    }
+
+    return output;
   }
 }

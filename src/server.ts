@@ -8,7 +8,6 @@ const port = 3000;
 app.use(express.json());
 app.use(router);
 
-
 app.get('/', router);
 app.post('/', router);
 app.put('/', router);
