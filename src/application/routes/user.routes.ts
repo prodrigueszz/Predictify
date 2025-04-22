@@ -3,8 +3,8 @@ import { UserController } from '../controllers/user.controller';
 
 const router = Router();
 
-router.get('/users/:name', UserController.find);
-router.post('/users', UserController.save);
-router.delete('/users/:id', UserController.delete);
+router.get('/users/:name', UserController.getHandler);
+router.post('/users', UserController.postHandler);
+router.delete('/users/:id', UserController.deleteHandler);
 
 export default router;

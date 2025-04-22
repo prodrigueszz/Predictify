@@ -1,4 +1,6 @@
-export type UserProperties = {
+import { randomUUID } from "crypto"
+
+export type UserProps = {
   id: string,
   name: string,
   email: string,
@@ -6,11 +8,11 @@ export type UserProperties = {
 }
 
 export class User {
-  private constructor(private props: UserProperties){}
+  private constructor(private props: UserProps){}
 
-  public static create(name: string, email: string, password: string){
+  public static create(name: string, email: string, password: string): User{
     return new User({
-      id: crypto.randomUUID(),
+      id: randomUUID(),
       name, 
       email,
       password

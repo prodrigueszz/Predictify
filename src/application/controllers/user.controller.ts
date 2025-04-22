@@ -16,7 +16,7 @@ export class UserController {
     return UserController.repository;
   }
 
-  public static async save(request: Request, response: Response): Promise<void> {
+  public static async postHandler(request: Request, response: Response): Promise<void> {
     const { name, email, password } = request.body;
 
     const CreateService = CreateUserUsecase.create(UserController.createRepository());
@@ -29,7 +29,7 @@ export class UserController {
     })
   }
 
-  public static async delete(request: Request, response: Response): Promise<void>{
+  public static async deleteHandler(request: Request, response: Response): Promise<void>{
     const { id } = request.params;
 
     const DeleteService = DeleteUserUsecase.create(UserController.createRepository());
@@ -42,13 +42,13 @@ export class UserController {
     })
   }
 
-  public static async find(request: Request, response: Response): Promise<void> {
+  public static async getHandler(request: Request, response: Response): Promise<void> {
     const { name } = request.params;
 
     const FindService = FindUserUsecase.create(UserController.createRepository());
 
     const { users } = await FindService.execute({ name });
-    
+
     response.status(200).json({
       message: "sucess",
       users: users
