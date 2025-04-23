@@ -18,14 +18,15 @@
     "@types/node": "^22.14.1",
     "@types/pg": "^8.11.13",
     "@vitest/coverage-istanbul": "^3.1.1",
+    "prisma": "^6.6.0",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3",
     "vitest": "^3.1.1"
   },
   "dependencies": {
+    "@prisma/client": "^6.6.0",
     "dotenv": "^16.5.0",
-    "express": "^5.1.0",
-    "pg": "^8.14.1"
+    "express": "^5.1.0"
   }
 }

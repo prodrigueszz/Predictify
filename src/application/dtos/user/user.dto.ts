@@ -1,4 +1,3 @@
-import { User } from "../../../domain/entities/user"
 
 export type CreateUserInputDto = {
   name: string,
@@ -11,7 +10,7 @@ export type CreateUserOutputDto = {
 }
 
 export type DeleteUserInputDto = {
-  id: string
+  id: number
 }
 
 export type DeleteUserOutputDto = {
@@ -19,9 +18,10 @@ export type DeleteUserOutputDto = {
 }
 
 export type FindUserInputDto = {
-  name: string
+  id: number
 }
 
 export type FindUserOutputDto = {
-  users: User[];
+  name: string,
+  email: string
 }

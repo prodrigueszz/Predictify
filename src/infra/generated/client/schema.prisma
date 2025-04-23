@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/infra/generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int          @id @default(autoincrement())
+  name        String
+  email       String       @unique
+  password    String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  predictions Prediction[]
+
+  @@map("users")
+}
+
+model Prediction {
+  id            Int      @id @default(autoincrement())
+  author        User     @relation(fields: [authorId], references: [id])
+  authorId      Int
+  matchId       Int
+  homeTeamScore Int
+  awayTeamScore Int
+  status        Boolean
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("predictions")
+}
+
+model Match {
+  id            Int      @id @default(autoincrement())
+  homeTeam      String
+  awayTeam      String
+  homeTeamScore Int
+  awayTeamScore Int
+  matchDate     DateTime
+  status        Boolean
+  createdAt     DateTime
+
+  @@map("matches")
+}

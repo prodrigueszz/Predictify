@@ -4,7 +4,6 @@ export type MatchScoreboard = {
 }
 
 export type MatchProps = {
-  id: number,
   homeTeam: string,
   awayTeam: string,
   matchScore: MatchScoreboard,
@@ -17,7 +16,6 @@ export class Match {
   private constructor(private props: MatchProps){}
 
   public static create(
-    id: number,
     homeTeam: string, awayTeam: string,
     scoreMatch: MatchScoreboard,
     winner: string,
@@ -25,7 +23,6 @@ export class Match {
     status: false,
   ): Match {
     return new Match({
-      id,
       homeTeam,
       awayTeam,
       matchScore: scoreMatch,

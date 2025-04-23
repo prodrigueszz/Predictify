@@ -1,15 +1,19 @@
-import { Pool } from "pg";
+import { PrismaClient } from "@prisma/client";
 import { Match } from "../../domain/entities/match";
 import { MatchGateway } from "./interface/match.gateway";
 
-export class PostgresMatchRepository implements MatchGateway {
-  private constructor(private readonly pool: Pool){}
+export class PrismaMatchRepository implements MatchGateway{
+  private constructor(private readonly client: PrismaClient){}
 
-  public static create(pool: Pool): PostgresMatchRepository{
-    return new PostgresMatchRepository(pool);
+  public static create(client: PrismaClient){
+    return new PrismaMatchRepository(client);
   }
 
-  save(match: Match): Promise<void> {
-    throw new Error("Tem que implementar ae bixo");
+  async save(match: Match): Promise<void>{
+    await this.client.match.create({
+      data: {
+        
+      }
+    })    
   }
 }

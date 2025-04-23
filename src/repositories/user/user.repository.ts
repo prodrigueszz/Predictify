@@ -1,68 +1,47 @@
-import { Pool } from "pg";
 import { User } from "../../domain/entities/user";
+import { PrismaClient } from "../../infra/generated/client";
 import { UserGateway } from "./interface/user.gateway";
 
-export class PostgresUserRepository implements UserGateway {
-  private constructor(private readonly pool: Pool){}
+export class PrismaUserRepository implements UserGateway {
+  private constructor(private readonly client: PrismaClient){}
 
-  public static create(pool: Pool){
-    return new PostgresUserRepository(pool);
+  public static create(client: PrismaClient){
+    return new PrismaUserRepository(client);
   }
 
-  async queryExecuter(query: string, values: string[]): Promise<void> {  
-    const client = await this.pool.connect();
-    client.query(query, values);
-    client.release();
+  async save(user: User){
+    await this.client.user.create({
+      data: {
+        name: user.name,
+        email: user.email,
+        password: user.password
+      }
+    })
   }
 
-  async save(user: User): Promise<void> {
-    try {
-
-      const query = `INSERT INTO users(id, name, email, password) VALUES ($1, $2, $3, $4)`;
-      const values = [user.id, user.name, user.email, user.password];
-
-      await this.queryExecuter(query, values);
-
-    } catch(err){
-      console.log(err);
-    }
+  async delete(id: number): Promise<void> {
+    await this.client.user.delete({
+      where: {
+        id: id
+      }
+    })
   }
 
-  async delete(id: string): Promise<void | Error> {
-    try {
-      const query = `DELETE FROM users WHERE id = $1`;
-      const values = [id];
-
-      await this.queryExecuter(query, values);
-    } catch (err) {
-      console.log(err);
-      return new Error("User does not exist"); 
-    }
-  }
-
-  async find(name: string){
-    try {
-      const query = `SELECT * FROM users WHERE name = $1`;
-      const values = [name];
-
-      const client = await this.pool.connect();
-      const { rows } = await client.query(query, values);
-      
-      const users: User[] = rows.map(obj => {
-        return User.create(obj.name, obj.email, obj.password);
-      })
-
-      client.release();
-
-      return users;
-
-    } catch (err) {
-      console.log(err);
-
-      const users: User[] = [];
-
-      return users;
+  async findById(id: number): Promise<User> {
+    const output = await this.client.user.findUnique({
+      where: {
+        id: id
+      }
+    })
+    
+    if(!output) {
+      throw new Error("User not found");
     }
 
+    const { name, email, password } = output;
+
+    const user = User.create(name, email, password, output.id);
+
+    return user;
   }
 }

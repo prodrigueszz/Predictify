@@ -1,6 +1,6 @@
 import express from 'express';
-import '../src/infrastructure/config/dotenv';
 import router from './application/routes/user.routes';
+import './infra/config/dotenv';
 
 const app = express();
 const port = 3000;

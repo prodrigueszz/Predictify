@@ -13,9 +13,9 @@ export class CreateUserUsecase implements Usecase<CreateUserInputDto, CreateUser
   async execute(input: CreateUserInputDto): Promise<CreateUserOutputDto> {
     const { name, email, password } = input;
 
-    const aUser = User.create(name, email, password);
+    const user = User.create(name, email, password);
 
-    await this.repository.save(aUser);
+    await this.repository.save(user);
 
     const output: CreateUserOutputDto = {
       createdAt: new Date()

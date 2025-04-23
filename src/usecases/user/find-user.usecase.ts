@@ -10,10 +10,13 @@ export class FindUserUsecase implements Usecase<FindUserInputDto, FindUserOutput
   }
 
   async execute(input: FindUserInputDto): Promise<FindUserOutputDto> {
-    const { name } = input;
+    const { id } = input;
 
+    const { name, email } = await this.repository.findById(id);
+    
     const output: FindUserOutputDto = {
-      users: await this.repository.find(name),
+      name,
+      email
     }
     
     return output;
