@@ -132,6 +132,7 @@ exports.Prisma.PredictionScalarFieldEnum = {
   matchId: 'matchId',
   homeTeamScore: 'homeTeamScore',
   awayTeamScore: 'awayTeamScore',
+  winner: 'winner',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -145,7 +146,8 @@ exports.Prisma.MatchScalarFieldEnum = {
   awayTeamScore: 'awayTeamScore',
   matchDate: 'matchDate',
   status: 'status',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  winner: 'winner'
 };
 
 exports.Prisma.SortOrder = {

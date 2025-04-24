@@ -1,4 +1,4 @@
-import { FindUserInputDto, FindUserOutputDto } from "../../application/dtos/user/user.dto";
+import { FindUserInputDto, FindUserOutputDto } from "../../application/dtos/user.dto";
 import { UserGateway } from "../../repositories/user/interface/user.gateway";
 import { Usecase } from "../interface/usecase";
 

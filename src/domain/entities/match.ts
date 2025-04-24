@@ -10,6 +10,7 @@ export type MatchProps = {
   winner: string,
   matchDate: Date,
   status: boolean
+  id?: number
 }
 
 export class Match {

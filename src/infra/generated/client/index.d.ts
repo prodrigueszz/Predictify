@@ -1078,6 +1078,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type MatchCountOutputType
+   */
+
+  export type MatchCountOutputType = {
+    predictions: number
+  }
+
+  export type MatchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    predictions?: boolean | MatchCountOutputTypeCountPredictionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MatchCountOutputType without action
+   */
+  export type MatchCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchCountOutputType
+     */
+    select?: MatchCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MatchCountOutputType without action
+   */
+  export type MatchCountOutputTypeCountPredictionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PredictionWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -2232,6 +2263,7 @@ export namespace Prisma {
     matchId: number | null
     homeTeamScore: number | null
     awayTeamScore: number | null
+    winner: string | null
     status: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2243,6 +2275,7 @@ export namespace Prisma {
     matchId: number | null
     homeTeamScore: number | null
     awayTeamScore: number | null
+    winner: string | null
     status: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2254,6 +2287,7 @@ export namespace Prisma {
     matchId: number
     homeTeamScore: number
     awayTeamScore: number
+    winner: number
     status: number
     createdAt: number
     updatedAt: number
@@ -2283,6 +2317,7 @@ export namespace Prisma {
     matchId?: true
     homeTeamScore?: true
     awayTeamScore?: true
+    winner?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -2294,6 +2329,7 @@ export namespace Prisma {
     matchId?: true
     homeTeamScore?: true
     awayTeamScore?: true
+    winner?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -2305,6 +2341,7 @@ export namespace Prisma {
     matchId?: true
     homeTeamScore?: true
     awayTeamScore?: true
+    winner?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -2403,6 +2440,7 @@ export namespace Prisma {
     matchId: number
     homeTeamScore: number
     awayTeamScore: number
+    winner: string
     status: boolean
     createdAt: Date
     updatedAt: Date
@@ -2433,10 +2471,12 @@ export namespace Prisma {
     matchId?: boolean
     homeTeamScore?: boolean
     awayTeamScore?: boolean
+    winner?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
+    match?: boolean | MatchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["prediction"]>
 
   export type PredictionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2445,10 +2485,12 @@ export namespace Prisma {
     matchId?: boolean
     homeTeamScore?: boolean
     awayTeamScore?: boolean
+    winner?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
+    match?: boolean | MatchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["prediction"]>
 
   export type PredictionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2457,10 +2499,12 @@ export namespace Prisma {
     matchId?: boolean
     homeTeamScore?: boolean
     awayTeamScore?: boolean
+    winner?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
+    match?: boolean | MatchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["prediction"]>
 
   export type PredictionSelectScalar = {
@@ -2469,26 +2513,31 @@ export namespace Prisma {
     matchId?: boolean
     homeTeamScore?: boolean
     awayTeamScore?: boolean
+    winner?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PredictionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "matchId" | "homeTeamScore" | "awayTeamScore" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["prediction"]>
+  export type PredictionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "matchId" | "homeTeamScore" | "awayTeamScore" | "winner" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["prediction"]>
   export type PredictionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
+    match?: boolean | MatchDefaultArgs<ExtArgs>
   }
   export type PredictionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
+    match?: boolean | MatchDefaultArgs<ExtArgs>
   }
   export type PredictionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
+    match?: boolean | MatchDefaultArgs<ExtArgs>
   }
 
   export type $PredictionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Prediction"
     objects: {
       author: Prisma.$UserPayload<ExtArgs>
+      match: Prisma.$MatchPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2496,6 +2545,7 @@ export namespace Prisma {
       matchId: number
       homeTeamScore: number
       awayTeamScore: number
+      winner: string
       status: boolean
       createdAt: Date
       updatedAt: Date
@@ -2894,6 +2944,7 @@ export namespace Prisma {
   export interface Prisma__PredictionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    match<T extends MatchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MatchDefaultArgs<ExtArgs>>): Prisma__MatchClient<$Result.GetResult<Prisma.$MatchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2928,6 +2979,7 @@ export namespace Prisma {
     readonly matchId: FieldRef<"Prediction", 'Int'>
     readonly homeTeamScore: FieldRef<"Prediction", 'Int'>
     readonly awayTeamScore: FieldRef<"Prediction", 'Int'>
+    readonly winner: FieldRef<"Prediction", 'String'>
     readonly status: FieldRef<"Prediction", 'Boolean'>
     readonly createdAt: FieldRef<"Prediction", 'DateTime'>
     readonly updatedAt: FieldRef<"Prediction", 'DateTime'>
@@ -3378,6 +3430,7 @@ export namespace Prisma {
     matchDate: Date | null
     status: boolean | null
     createdAt: Date | null
+    winner: string | null
   }
 
   export type MatchMaxAggregateOutputType = {
@@ -3389,6 +3442,7 @@ export namespace Prisma {
     matchDate: Date | null
     status: boolean | null
     createdAt: Date | null
+    winner: string | null
   }
 
   export type MatchCountAggregateOutputType = {
@@ -3400,6 +3454,7 @@ export namespace Prisma {
     matchDate: number
     status: number
     createdAt: number
+    winner: number
     _all: number
   }
 
@@ -3425,6 +3480,7 @@ export namespace Prisma {
     matchDate?: true
     status?: true
     createdAt?: true
+    winner?: true
   }
 
   export type MatchMaxAggregateInputType = {
@@ -3436,6 +3492,7 @@ export namespace Prisma {
     matchDate?: true
     status?: true
     createdAt?: true
+    winner?: true
   }
 
   export type MatchCountAggregateInputType = {
@@ -3447,6 +3504,7 @@ export namespace Prisma {
     matchDate?: true
     status?: true
     createdAt?: true
+    winner?: true
     _all?: true
   }
 
@@ -3545,6 +3603,7 @@ export namespace Prisma {
     matchDate: Date
     status: boolean
     createdAt: Date
+    winner: string
     _count: MatchCountAggregateOutputType | null
     _avg: MatchAvgAggregateOutputType | null
     _sum: MatchSumAggregateOutputType | null
@@ -3575,6 +3634,9 @@ export namespace Prisma {
     matchDate?: boolean
     status?: boolean
     createdAt?: boolean
+    winner?: boolean
+    predictions?: boolean | Match$predictionsArgs<ExtArgs>
+    _count?: boolean | MatchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["match"]>
 
   export type MatchSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3586,6 +3648,7 @@ export namespace Prisma {
     matchDate?: boolean
     status?: boolean
     createdAt?: boolean
+    winner?: boolean
   }, ExtArgs["result"]["match"]>
 
   export type MatchSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3597,6 +3660,7 @@ export namespace Prisma {
     matchDate?: boolean
     status?: boolean
     createdAt?: boolean
+    winner?: boolean
   }, ExtArgs["result"]["match"]>
 
   export type MatchSelectScalar = {
@@ -3608,13 +3672,22 @@ export namespace Prisma {
     matchDate?: boolean
     status?: boolean
     createdAt?: boolean
+    winner?: boolean
   }
 
-  export type MatchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "homeTeam" | "awayTeam" | "homeTeamScore" | "awayTeamScore" | "matchDate" | "status" | "createdAt", ExtArgs["result"]["match"]>
+  export type MatchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "homeTeam" | "awayTeam" | "homeTeamScore" | "awayTeamScore" | "matchDate" | "status" | "createdAt" | "winner", ExtArgs["result"]["match"]>
+  export type MatchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    predictions?: boolean | Match$predictionsArgs<ExtArgs>
+    _count?: boolean | MatchCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type MatchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type MatchIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $MatchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Match"
-    objects: {}
+    objects: {
+      predictions: Prisma.$PredictionPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       homeTeam: string
@@ -3624,6 +3697,7 @@ export namespace Prisma {
       matchDate: Date
       status: boolean
       createdAt: Date
+      winner: string
     }, ExtArgs["result"]["match"]>
     composites: {}
   }
@@ -4018,6 +4092,7 @@ export namespace Prisma {
    */
   export interface Prisma__MatchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    predictions<T extends Match$predictionsArgs<ExtArgs> = {}>(args?: Subset<T, Match$predictionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PredictionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4055,6 +4130,7 @@ export namespace Prisma {
     readonly matchDate: FieldRef<"Match", 'DateTime'>
     readonly status: FieldRef<"Match", 'Boolean'>
     readonly createdAt: FieldRef<"Match", 'DateTime'>
+    readonly winner: FieldRef<"Match", 'String'>
   }
     
 
@@ -4071,6 +4147,10 @@ export namespace Prisma {
      * Omit specific fields from the Match
      */
     omit?: MatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchInclude<ExtArgs> | null
     /**
      * Filter, which Match to fetch.
      */
@@ -4090,6 +4170,10 @@ export namespace Prisma {
      */
     omit?: MatchOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchInclude<ExtArgs> | null
+    /**
      * Filter, which Match to fetch.
      */
     where: MatchWhereUniqueInput
@@ -4107,6 +4191,10 @@ export namespace Prisma {
      * Omit specific fields from the Match
      */
     omit?: MatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchInclude<ExtArgs> | null
     /**
      * Filter, which Match to fetch.
      */
@@ -4156,6 +4244,10 @@ export namespace Prisma {
      */
     omit?: MatchOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchInclude<ExtArgs> | null
+    /**
      * Filter, which Match to fetch.
      */
     where?: MatchWhereInput
@@ -4204,6 +4296,10 @@ export namespace Prisma {
      */
     omit?: MatchOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchInclude<ExtArgs> | null
+    /**
      * Filter, which Matches to fetch.
      */
     where?: MatchWhereInput
@@ -4246,6 +4342,10 @@ export namespace Prisma {
      * Omit specific fields from the Match
      */
     omit?: MatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchInclude<ExtArgs> | null
     /**
      * The data needed to create a Match.
      */
@@ -4294,6 +4394,10 @@ export namespace Prisma {
      * Omit specific fields from the Match
      */
     omit?: MatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchInclude<ExtArgs> | null
     /**
      * The data needed to update a Match.
      */
@@ -4361,6 +4465,10 @@ export namespace Prisma {
      */
     omit?: MatchOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchInclude<ExtArgs> | null
+    /**
      * The filter to search for the Match to update in case it exists.
      */
     where: MatchWhereUniqueInput
@@ -4387,6 +4495,10 @@ export namespace Prisma {
      */
     omit?: MatchOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchInclude<ExtArgs> | null
+    /**
      * Filter which Match to delete.
      */
     where: MatchWhereUniqueInput
@@ -4407,6 +4519,30 @@ export namespace Prisma {
   }
 
   /**
+   * Match.predictions
+   */
+  export type Match$predictionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prediction
+     */
+    select?: PredictionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Prediction
+     */
+    omit?: PredictionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PredictionInclude<ExtArgs> | null
+    where?: PredictionWhereInput
+    orderBy?: PredictionOrderByWithRelationInput | PredictionOrderByWithRelationInput[]
+    cursor?: PredictionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PredictionScalarFieldEnum | PredictionScalarFieldEnum[]
+  }
+
+  /**
    * Match without action
    */
   export type MatchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4418,6 +4554,10 @@ export namespace Prisma {
      * Omit specific fields from the Match
      */
     omit?: MatchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchInclude<ExtArgs> | null
   }
 
 
@@ -4453,6 +4593,7 @@ export namespace Prisma {
     matchId: 'matchId',
     homeTeamScore: 'homeTeamScore',
     awayTeamScore: 'awayTeamScore',
+    winner: 'winner',
     status: 'status',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -4469,7 +4610,8 @@ export namespace Prisma {
     awayTeamScore: 'awayTeamScore',
     matchDate: 'matchDate',
     status: 'status',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    winner: 'winner'
   };
 
   export type MatchScalarFieldEnum = (typeof MatchScalarFieldEnum)[keyof typeof MatchScalarFieldEnum]
@@ -4633,10 +4775,12 @@ export namespace Prisma {
     matchId?: IntFilter<"Prediction"> | number
     homeTeamScore?: IntFilter<"Prediction"> | number
     awayTeamScore?: IntFilter<"Prediction"> | number
+    winner?: StringFilter<"Prediction"> | string
     status?: BoolFilter<"Prediction"> | boolean
     createdAt?: DateTimeFilter<"Prediction"> | Date | string
     updatedAt?: DateTimeFilter<"Prediction"> | Date | string
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    match?: XOR<MatchScalarRelationFilter, MatchWhereInput>
   }
 
   export type PredictionOrderByWithRelationInput = {
@@ -4645,10 +4789,12 @@ export namespace Prisma {
     matchId?: SortOrder
     homeTeamScore?: SortOrder
     awayTeamScore?: SortOrder
+    winner?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     author?: UserOrderByWithRelationInput
+    match?: MatchOrderByWithRelationInput
   }
 
   export type PredictionWhereUniqueInput = Prisma.AtLeast<{
@@ -4660,10 +4806,12 @@ export namespace Prisma {
     matchId?: IntFilter<"Prediction"> | number
     homeTeamScore?: IntFilter<"Prediction"> | number
     awayTeamScore?: IntFilter<"Prediction"> | number
+    winner?: StringFilter<"Prediction"> | string
     status?: BoolFilter<"Prediction"> | boolean
     createdAt?: DateTimeFilter<"Prediction"> | Date | string
     updatedAt?: DateTimeFilter<"Prediction"> | Date | string
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    match?: XOR<MatchScalarRelationFilter, MatchWhereInput>
   }, "id">
 
   export type PredictionOrderByWithAggregationInput = {
@@ -4672,6 +4820,7 @@ export namespace Prisma {
     matchId?: SortOrder
     homeTeamScore?: SortOrder
     awayTeamScore?: SortOrder
+    winner?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -4691,6 +4840,7 @@ export namespace Prisma {
     matchId?: IntWithAggregatesFilter<"Prediction"> | number
     homeTeamScore?: IntWithAggregatesFilter<"Prediction"> | number
     awayTeamScore?: IntWithAggregatesFilter<"Prediction"> | number
+    winner?: StringWithAggregatesFilter<"Prediction"> | string
     status?: BoolWithAggregatesFilter<"Prediction"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Prediction"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Prediction"> | Date | string
@@ -4708,6 +4858,8 @@ export namespace Prisma {
     matchDate?: DateTimeFilter<"Match"> | Date | string
     status?: BoolFilter<"Match"> | boolean
     createdAt?: DateTimeFilter<"Match"> | Date | string
+    winner?: StringFilter<"Match"> | string
+    predictions?: PredictionListRelationFilter
   }
 
   export type MatchOrderByWithRelationInput = {
@@ -4719,6 +4871,8 @@ export namespace Prisma {
     matchDate?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    winner?: SortOrder
+    predictions?: PredictionOrderByRelationAggregateInput
   }
 
   export type MatchWhereUniqueInput = Prisma.AtLeast<{
@@ -4733,6 +4887,8 @@ export namespace Prisma {
     matchDate?: DateTimeFilter<"Match"> | Date | string
     status?: BoolFilter<"Match"> | boolean
     createdAt?: DateTimeFilter<"Match"> | Date | string
+    winner?: StringFilter<"Match"> | string
+    predictions?: PredictionListRelationFilter
   }, "id">
 
   export type MatchOrderByWithAggregationInput = {
@@ -4744,6 +4900,7 @@ export namespace Prisma {
     matchDate?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    winner?: SortOrder
     _count?: MatchCountOrderByAggregateInput
     _avg?: MatchAvgOrderByAggregateInput
     _max?: MatchMaxOrderByAggregateInput
@@ -4763,6 +4920,7 @@ export namespace Prisma {
     matchDate?: DateTimeWithAggregatesFilter<"Match"> | Date | string
     status?: BoolWithAggregatesFilter<"Match"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Match"> | Date | string
+    winner?: StringWithAggregatesFilter<"Match"> | string
   }
 
   export type UserCreateInput = {
@@ -4830,13 +4988,14 @@ export namespace Prisma {
   }
 
   export type PredictionCreateInput = {
-    matchId: number
     homeTeamScore: number
     awayTeamScore: number
+    winner: string
     status: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     author: UserCreateNestedOneWithoutPredictionsInput
+    match: MatchCreateNestedOneWithoutPredictionsInput
   }
 
   export type PredictionUncheckedCreateInput = {
@@ -4845,19 +5004,21 @@ export namespace Prisma {
     matchId: number
     homeTeamScore: number
     awayTeamScore: number
+    winner: string
     status: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type PredictionUpdateInput = {
-    matchId?: IntFieldUpdateOperationsInput | number
     homeTeamScore?: IntFieldUpdateOperationsInput | number
     awayTeamScore?: IntFieldUpdateOperationsInput | number
+    winner?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutPredictionsNestedInput
+    match?: MatchUpdateOneRequiredWithoutPredictionsNestedInput
   }
 
   export type PredictionUncheckedUpdateInput = {
@@ -4866,6 +5027,7 @@ export namespace Prisma {
     matchId?: IntFieldUpdateOperationsInput | number
     homeTeamScore?: IntFieldUpdateOperationsInput | number
     awayTeamScore?: IntFieldUpdateOperationsInput | number
+    winner?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4877,15 +5039,16 @@ export namespace Prisma {
     matchId: number
     homeTeamScore: number
     awayTeamScore: number
+    winner: string
     status: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type PredictionUpdateManyMutationInput = {
-    matchId?: IntFieldUpdateOperationsInput | number
     homeTeamScore?: IntFieldUpdateOperationsInput | number
     awayTeamScore?: IntFieldUpdateOperationsInput | number
+    winner?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4897,6 +5060,7 @@ export namespace Prisma {
     matchId?: IntFieldUpdateOperationsInput | number
     homeTeamScore?: IntFieldUpdateOperationsInput | number
     awayTeamScore?: IntFieldUpdateOperationsInput | number
+    winner?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4910,6 +5074,8 @@ export namespace Prisma {
     matchDate: Date | string
     status: boolean
     createdAt: Date | string
+    winner: string
+    predictions?: PredictionCreateNestedManyWithoutMatchInput
   }
 
   export type MatchUncheckedCreateInput = {
@@ -4921,6 +5087,8 @@ export namespace Prisma {
     matchDate: Date | string
     status: boolean
     createdAt: Date | string
+    winner: string
+    predictions?: PredictionUncheckedCreateNestedManyWithoutMatchInput
   }
 
   export type MatchUpdateInput = {
@@ -4931,6 +5099,8 @@ export namespace Prisma {
     matchDate?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    winner?: StringFieldUpdateOperationsInput | string
+    predictions?: PredictionUpdateManyWithoutMatchNestedInput
   }
 
   export type MatchUncheckedUpdateInput = {
@@ -4942,6 +5112,8 @@ export namespace Prisma {
     matchDate?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    winner?: StringFieldUpdateOperationsInput | string
+    predictions?: PredictionUncheckedUpdateManyWithoutMatchNestedInput
   }
 
   export type MatchCreateManyInput = {
@@ -4953,6 +5125,7 @@ export namespace Prisma {
     matchDate: Date | string
     status: boolean
     createdAt: Date | string
+    winner: string
   }
 
   export type MatchUpdateManyMutationInput = {
@@ -4963,6 +5136,7 @@ export namespace Prisma {
     matchDate?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    winner?: StringFieldUpdateOperationsInput | string
   }
 
   export type MatchUncheckedUpdateManyInput = {
@@ -4974,6 +5148,7 @@ export namespace Prisma {
     matchDate?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    winner?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -5116,12 +5291,18 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
+  export type MatchScalarRelationFilter = {
+    is?: MatchWhereInput
+    isNot?: MatchWhereInput
+  }
+
   export type PredictionCountOrderByAggregateInput = {
     id?: SortOrder
     authorId?: SortOrder
     matchId?: SortOrder
     homeTeamScore?: SortOrder
     awayTeamScore?: SortOrder
+    winner?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -5141,6 +5322,7 @@ export namespace Prisma {
     matchId?: SortOrder
     homeTeamScore?: SortOrder
     awayTeamScore?: SortOrder
+    winner?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -5152,6 +5334,7 @@ export namespace Prisma {
     matchId?: SortOrder
     homeTeamScore?: SortOrder
     awayTeamScore?: SortOrder
+    winner?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -5182,6 +5365,7 @@ export namespace Prisma {
     matchDate?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    winner?: SortOrder
   }
 
   export type MatchAvgOrderByAggregateInput = {
@@ -5199,6 +5383,7 @@ export namespace Prisma {
     matchDate?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    winner?: SortOrder
   }
 
   export type MatchMinOrderByAggregateInput = {
@@ -5210,6 +5395,7 @@ export namespace Prisma {
     matchDate?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    winner?: SortOrder
   }
 
   export type MatchSumOrderByAggregateInput = {
@@ -5282,6 +5468,12 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type MatchCreateNestedOneWithoutPredictionsInput = {
+    create?: XOR<MatchCreateWithoutPredictionsInput, MatchUncheckedCreateWithoutPredictionsInput>
+    connectOrCreate?: MatchCreateOrConnectWithoutPredictionsInput
+    connect?: MatchWhereUniqueInput
+  }
+
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
   }
@@ -5292,6 +5484,56 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutPredictionsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPredictionsInput, UserUpdateWithoutPredictionsInput>, UserUncheckedUpdateWithoutPredictionsInput>
+  }
+
+  export type MatchUpdateOneRequiredWithoutPredictionsNestedInput = {
+    create?: XOR<MatchCreateWithoutPredictionsInput, MatchUncheckedCreateWithoutPredictionsInput>
+    connectOrCreate?: MatchCreateOrConnectWithoutPredictionsInput
+    upsert?: MatchUpsertWithoutPredictionsInput
+    connect?: MatchWhereUniqueInput
+    update?: XOR<XOR<MatchUpdateToOneWithWhereWithoutPredictionsInput, MatchUpdateWithoutPredictionsInput>, MatchUncheckedUpdateWithoutPredictionsInput>
+  }
+
+  export type PredictionCreateNestedManyWithoutMatchInput = {
+    create?: XOR<PredictionCreateWithoutMatchInput, PredictionUncheckedCreateWithoutMatchInput> | PredictionCreateWithoutMatchInput[] | PredictionUncheckedCreateWithoutMatchInput[]
+    connectOrCreate?: PredictionCreateOrConnectWithoutMatchInput | PredictionCreateOrConnectWithoutMatchInput[]
+    createMany?: PredictionCreateManyMatchInputEnvelope
+    connect?: PredictionWhereUniqueInput | PredictionWhereUniqueInput[]
+  }
+
+  export type PredictionUncheckedCreateNestedManyWithoutMatchInput = {
+    create?: XOR<PredictionCreateWithoutMatchInput, PredictionUncheckedCreateWithoutMatchInput> | PredictionCreateWithoutMatchInput[] | PredictionUncheckedCreateWithoutMatchInput[]
+    connectOrCreate?: PredictionCreateOrConnectWithoutMatchInput | PredictionCreateOrConnectWithoutMatchInput[]
+    createMany?: PredictionCreateManyMatchInputEnvelope
+    connect?: PredictionWhereUniqueInput | PredictionWhereUniqueInput[]
+  }
+
+  export type PredictionUpdateManyWithoutMatchNestedInput = {
+    create?: XOR<PredictionCreateWithoutMatchInput, PredictionUncheckedCreateWithoutMatchInput> | PredictionCreateWithoutMatchInput[] | PredictionUncheckedCreateWithoutMatchInput[]
+    connectOrCreate?: PredictionCreateOrConnectWithoutMatchInput | PredictionCreateOrConnectWithoutMatchInput[]
+    upsert?: PredictionUpsertWithWhereUniqueWithoutMatchInput | PredictionUpsertWithWhereUniqueWithoutMatchInput[]
+    createMany?: PredictionCreateManyMatchInputEnvelope
+    set?: PredictionWhereUniqueInput | PredictionWhereUniqueInput[]
+    disconnect?: PredictionWhereUniqueInput | PredictionWhereUniqueInput[]
+    delete?: PredictionWhereUniqueInput | PredictionWhereUniqueInput[]
+    connect?: PredictionWhereUniqueInput | PredictionWhereUniqueInput[]
+    update?: PredictionUpdateWithWhereUniqueWithoutMatchInput | PredictionUpdateWithWhereUniqueWithoutMatchInput[]
+    updateMany?: PredictionUpdateManyWithWhereWithoutMatchInput | PredictionUpdateManyWithWhereWithoutMatchInput[]
+    deleteMany?: PredictionScalarWhereInput | PredictionScalarWhereInput[]
+  }
+
+  export type PredictionUncheckedUpdateManyWithoutMatchNestedInput = {
+    create?: XOR<PredictionCreateWithoutMatchInput, PredictionUncheckedCreateWithoutMatchInput> | PredictionCreateWithoutMatchInput[] | PredictionUncheckedCreateWithoutMatchInput[]
+    connectOrCreate?: PredictionCreateOrConnectWithoutMatchInput | PredictionCreateOrConnectWithoutMatchInput[]
+    upsert?: PredictionUpsertWithWhereUniqueWithoutMatchInput | PredictionUpsertWithWhereUniqueWithoutMatchInput[]
+    createMany?: PredictionCreateManyMatchInputEnvelope
+    set?: PredictionWhereUniqueInput | PredictionWhereUniqueInput[]
+    disconnect?: PredictionWhereUniqueInput | PredictionWhereUniqueInput[]
+    delete?: PredictionWhereUniqueInput | PredictionWhereUniqueInput[]
+    connect?: PredictionWhereUniqueInput | PredictionWhereUniqueInput[]
+    update?: PredictionUpdateWithWhereUniqueWithoutMatchInput | PredictionUpdateWithWhereUniqueWithoutMatchInput[]
+    updateMany?: PredictionUpdateManyWithWhereWithoutMatchInput | PredictionUpdateManyWithWhereWithoutMatchInput[]
+    deleteMany?: PredictionScalarWhereInput | PredictionScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -5402,12 +5644,13 @@ export namespace Prisma {
   }
 
   export type PredictionCreateWithoutAuthorInput = {
-    matchId: number
     homeTeamScore: number
     awayTeamScore: number
+    winner: string
     status: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    match: MatchCreateNestedOneWithoutPredictionsInput
   }
 
   export type PredictionUncheckedCreateWithoutAuthorInput = {
@@ -5415,6 +5658,7 @@ export namespace Prisma {
     matchId: number
     homeTeamScore: number
     awayTeamScore: number
+    winner: string
     status: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -5455,6 +5699,7 @@ export namespace Prisma {
     matchId?: IntFilter<"Prediction"> | number
     homeTeamScore?: IntFilter<"Prediction"> | number
     awayTeamScore?: IntFilter<"Prediction"> | number
+    winner?: StringFilter<"Prediction"> | string
     status?: BoolFilter<"Prediction"> | boolean
     createdAt?: DateTimeFilter<"Prediction"> | Date | string
     updatedAt?: DateTimeFilter<"Prediction"> | Date | string
@@ -5480,6 +5725,34 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutPredictionsInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutPredictionsInput, UserUncheckedCreateWithoutPredictionsInput>
+  }
+
+  export type MatchCreateWithoutPredictionsInput = {
+    homeTeam: string
+    awayTeam: string
+    homeTeamScore: number
+    awayTeamScore: number
+    matchDate: Date | string
+    status: boolean
+    createdAt: Date | string
+    winner: string
+  }
+
+  export type MatchUncheckedCreateWithoutPredictionsInput = {
+    id?: number
+    homeTeam: string
+    awayTeam: string
+    homeTeamScore: number
+    awayTeamScore: number
+    matchDate: Date | string
+    status: boolean
+    createdAt: Date | string
+    winner: string
+  }
+
+  export type MatchCreateOrConnectWithoutPredictionsInput = {
+    where: MatchWhereUniqueInput
+    create: XOR<MatchCreateWithoutPredictionsInput, MatchUncheckedCreateWithoutPredictionsInput>
   }
 
   export type UserUpsertWithoutPredictionsInput = {
@@ -5510,23 +5783,106 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MatchUpsertWithoutPredictionsInput = {
+    update: XOR<MatchUpdateWithoutPredictionsInput, MatchUncheckedUpdateWithoutPredictionsInput>
+    create: XOR<MatchCreateWithoutPredictionsInput, MatchUncheckedCreateWithoutPredictionsInput>
+    where?: MatchWhereInput
+  }
+
+  export type MatchUpdateToOneWithWhereWithoutPredictionsInput = {
+    where?: MatchWhereInput
+    data: XOR<MatchUpdateWithoutPredictionsInput, MatchUncheckedUpdateWithoutPredictionsInput>
+  }
+
+  export type MatchUpdateWithoutPredictionsInput = {
+    homeTeam?: StringFieldUpdateOperationsInput | string
+    awayTeam?: StringFieldUpdateOperationsInput | string
+    homeTeamScore?: IntFieldUpdateOperationsInput | number
+    awayTeamScore?: IntFieldUpdateOperationsInput | number
+    matchDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    winner?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MatchUncheckedUpdateWithoutPredictionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    homeTeam?: StringFieldUpdateOperationsInput | string
+    awayTeam?: StringFieldUpdateOperationsInput | string
+    homeTeamScore?: IntFieldUpdateOperationsInput | number
+    awayTeamScore?: IntFieldUpdateOperationsInput | number
+    matchDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    winner?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PredictionCreateWithoutMatchInput = {
+    homeTeamScore: number
+    awayTeamScore: number
+    winner: string
+    status: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    author: UserCreateNestedOneWithoutPredictionsInput
+  }
+
+  export type PredictionUncheckedCreateWithoutMatchInput = {
+    id?: number
+    authorId: number
+    homeTeamScore: number
+    awayTeamScore: number
+    winner: string
+    status: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PredictionCreateOrConnectWithoutMatchInput = {
+    where: PredictionWhereUniqueInput
+    create: XOR<PredictionCreateWithoutMatchInput, PredictionUncheckedCreateWithoutMatchInput>
+  }
+
+  export type PredictionCreateManyMatchInputEnvelope = {
+    data: PredictionCreateManyMatchInput | PredictionCreateManyMatchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PredictionUpsertWithWhereUniqueWithoutMatchInput = {
+    where: PredictionWhereUniqueInput
+    update: XOR<PredictionUpdateWithoutMatchInput, PredictionUncheckedUpdateWithoutMatchInput>
+    create: XOR<PredictionCreateWithoutMatchInput, PredictionUncheckedCreateWithoutMatchInput>
+  }
+
+  export type PredictionUpdateWithWhereUniqueWithoutMatchInput = {
+    where: PredictionWhereUniqueInput
+    data: XOR<PredictionUpdateWithoutMatchInput, PredictionUncheckedUpdateWithoutMatchInput>
+  }
+
+  export type PredictionUpdateManyWithWhereWithoutMatchInput = {
+    where: PredictionScalarWhereInput
+    data: XOR<PredictionUpdateManyMutationInput, PredictionUncheckedUpdateManyWithoutMatchInput>
+  }
+
   export type PredictionCreateManyAuthorInput = {
     id?: number
     matchId: number
     homeTeamScore: number
     awayTeamScore: number
+    winner: string
     status: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type PredictionUpdateWithoutAuthorInput = {
-    matchId?: IntFieldUpdateOperationsInput | number
     homeTeamScore?: IntFieldUpdateOperationsInput | number
     awayTeamScore?: IntFieldUpdateOperationsInput | number
+    winner?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    match?: MatchUpdateOneRequiredWithoutPredictionsNestedInput
   }
 
   export type PredictionUncheckedUpdateWithoutAuthorInput = {
@@ -5534,6 +5890,7 @@ export namespace Prisma {
     matchId?: IntFieldUpdateOperationsInput | number
     homeTeamScore?: IntFieldUpdateOperationsInput | number
     awayTeamScore?: IntFieldUpdateOperationsInput | number
+    winner?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5544,6 +5901,50 @@ export namespace Prisma {
     matchId?: IntFieldUpdateOperationsInput | number
     homeTeamScore?: IntFieldUpdateOperationsInput | number
     awayTeamScore?: IntFieldUpdateOperationsInput | number
+    winner?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PredictionCreateManyMatchInput = {
+    id?: number
+    authorId: number
+    homeTeamScore: number
+    awayTeamScore: number
+    winner: string
+    status: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PredictionUpdateWithoutMatchInput = {
+    homeTeamScore?: IntFieldUpdateOperationsInput | number
+    awayTeamScore?: IntFieldUpdateOperationsInput | number
+    winner?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutPredictionsNestedInput
+  }
+
+  export type PredictionUncheckedUpdateWithoutMatchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    authorId?: IntFieldUpdateOperationsInput | number
+    homeTeamScore?: IntFieldUpdateOperationsInput | number
+    awayTeamScore?: IntFieldUpdateOperationsInput | number
+    winner?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PredictionUncheckedUpdateManyWithoutMatchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    authorId?: IntFieldUpdateOperationsInput | number
+    homeTeamScore?: IntFieldUpdateOperationsInput | number
+    awayTeamScore?: IntFieldUpdateOperationsInput | number
+    winner?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

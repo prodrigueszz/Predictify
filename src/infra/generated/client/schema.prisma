@@ -27,15 +27,17 @@ model Prediction {
   matchId       Int
   homeTeamScore Int
   awayTeamScore Int
+  winner        String
   status        Boolean
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+  match         Match    @relation(fields: [matchId], references: [id])
 
   @@map("predictions")
 }
 
 model Match {
-  id            Int      @id @default(autoincrement())
+  id            Int          @id @default(autoincrement())
   homeTeam      String
   awayTeam      String
   homeTeamScore Int
@@ -43,6 +45,8 @@ model Match {
   matchDate     DateTime
   status        Boolean
   createdAt     DateTime
+  winner        String
+  predictions   Prediction[]
 
   @@map("matches")
 }

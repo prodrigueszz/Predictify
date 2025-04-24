@@ -2,9 +2,12 @@ export type PredictionProps = {
   id?: number,
   authorId: number,
   matchId: number,
-  homeTeamScore: number,
-  awayTeamScore: number,
-  createdAt: Date,
+  scoreboard: {
+    homeTeamScore: number,
+    awayTeamScore: number,
+  }
+  createdAt?: Date,
+  winner: string,
   status: boolean
 }
 
@@ -13,18 +16,39 @@ export class Prediction {
 
   public static create(authorId: number, matchId: number, 
     homeTeamScore: number, awayTeamScore: number,
-    createdAt: Date, status: boolean, id?: number
+    winner: string, id?: number, createdAt?: Date
   ) {
     return new Prediction({
       authorId, 
       matchId, 
-      homeTeamScore,
-      awayTeamScore,
-      createdAt,
-      status,
-      id
+      scoreboard: {
+        homeTeamScore,
+        awayTeamScore
+      },
+      winner,
+      status: false,
+      id,
+      createdAt
     })
   }
 
-  
+  get authorId() {
+    return this.props.authorId;
+  }
+
+  get matchId() {
+    return this.props.matchId;
+  }
+
+  get scoreboard(){
+    return this.props.scoreboard;
+  }
+
+  get status(){
+    return this.props.status;
+  }
+
+  get winner(){
+    return this.props.winner;
+  }
 }

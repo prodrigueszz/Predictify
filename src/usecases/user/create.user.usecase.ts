@@ -1,4 +1,4 @@
-import { CreateUserInputDto, CreateUserOutputDto } from "../../application/dtos/user/user.dto";
+import { CreateUserInputDto, CreateUserOutputDto } from "../../application/dtos/user.dto";
 import { User } from "../../domain/entities/user";
 import { UserGateway } from "../../repositories/user/interface/user.gateway";
 import { Usecase } from "../interface/usecase";
