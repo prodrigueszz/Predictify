@@ -14,7 +14,8 @@ export class CreateMatchUsecase implements Usecase<CreateMatchInputDto, CreateMa
     const { homeTeam, awayTeam, homeTeamScore, awayTeamScore, matchDate, winner } = input;
 
     const match = Match.create(
-      homeTeam, awayTeam, homeTeamScore, awayTeamScore, matchDate, winner
+      homeTeam, awayTeam, homeTeamScore, awayTeamScore,
+      matchDate, winner
     )
 
     await this.repository.save(match);
