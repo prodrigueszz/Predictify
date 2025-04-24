@@ -8,8 +8,8 @@ export type MatchProps = {
   awayTeam: string,
   matchScore: MatchScoreboard,
   winner: string,
+  status: boolean,
   matchDate: Date,
-  status: boolean
   id?: number
 }
 
@@ -18,18 +18,16 @@ export class Match {
 
   public static create(
     homeTeam: string, awayTeam: string,
-    scoreMatch: MatchScoreboard,
+    matchScore: MatchScoreboard, matchDate: Date,
     winner: string,
-    matchDate: Date,
-    status: false,
   ): Match {
     return new Match({
       homeTeam,
       awayTeam,
-      matchScore: scoreMatch,
-      winner,
+      matchScore,
       matchDate,
-      status
+      winner,
+      status: false
     })
   }
 
@@ -53,6 +51,10 @@ export class Match {
     return this.props.awayTeam;
   }
 
+  get matchDate(){
+    return this.props.matchDate;
+  }
+
   public changeScoreboard(homeScore?: number, awayScore?: number): void {
     homeScore != null && (this.scoreboard.home = homeScore);
     awayScore != null && (this.scoreboard.away = awayScore);
@@ -60,10 +62,6 @@ export class Match {
 
   public isOver(){
     return this.status;
-  }
-
-  public setStatus(){
-    this.props.matchDate > new Date() && (this.props.status = true); 
   }
 
   public setWinner() {

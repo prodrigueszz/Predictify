@@ -5073,7 +5073,7 @@ export namespace Prisma {
     awayTeamScore: number
     matchDate: Date | string
     status: boolean
-    createdAt: Date | string
+    createdAt?: Date | string
     winner: string
     predictions?: PredictionCreateNestedManyWithoutMatchInput
   }
@@ -5086,7 +5086,7 @@ export namespace Prisma {
     awayTeamScore: number
     matchDate: Date | string
     status: boolean
-    createdAt: Date | string
+    createdAt?: Date | string
     winner: string
     predictions?: PredictionUncheckedCreateNestedManyWithoutMatchInput
   }
@@ -5124,7 +5124,7 @@ export namespace Prisma {
     awayTeamScore: number
     matchDate: Date | string
     status: boolean
-    createdAt: Date | string
+    createdAt?: Date | string
     winner: string
   }
 
@@ -5734,7 +5734,7 @@ export namespace Prisma {
     awayTeamScore: number
     matchDate: Date | string
     status: boolean
-    createdAt: Date | string
+    createdAt?: Date | string
     winner: string
   }
 
@@ -5746,7 +5746,7 @@ export namespace Prisma {
     awayTeamScore: number
     matchDate: Date | string
     status: boolean
-    createdAt: Date | string
+    createdAt?: Date | string
     winner: string
   }
 

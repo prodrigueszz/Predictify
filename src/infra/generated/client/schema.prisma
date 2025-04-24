@@ -44,7 +44,7 @@ model Match {
   awayTeamScore Int
   matchDate     DateTime
   status        Boolean
-  createdAt     DateTime
+  createdAt     DateTime     @default(now())
   winner        String
   predictions   Prediction[]
 

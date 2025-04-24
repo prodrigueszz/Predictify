@@ -13,7 +13,7 @@ export class PrismaPredictionRepository implements PredictionGateway {
   async save(prediction: Prediction): Promise<DefaultPredictionDto> {
     const { authorId, matchId, scoreboard, winner, status } = prediction;
 
-    const newPrediction = await this.client.prediction.create({
+    const { id, createdAt } = await this.client.prediction.create({
       data: {
         authorId,
         matchId,
@@ -23,9 +23,7 @@ export class PrismaPredictionRepository implements PredictionGateway {
         status
       }
     })
-    console.log(newPrediction);
 
-    const { id, createdAt } = newPrediction;
     const output: DefaultPredictionDto = {
       id, 
       createdAt
