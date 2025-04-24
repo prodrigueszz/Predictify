@@ -20,7 +20,16 @@ async function MatchPostHandler(request: Request, response: Response): Promise<v
 
   response.status(201).json({
     message: "sucess",
-    matchInfo: output
+    info: {
+      teams: {
+        homeTeam: output.teams.homeTeam,
+        awayTeam: output.teams.awayTeam
+      },
+      matchInfo: {
+        date: output.matchInfo.date,
+        status: output.matchInfo.status
+      }
+    }
   })
 } 
 

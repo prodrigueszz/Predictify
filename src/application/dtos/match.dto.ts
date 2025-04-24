@@ -1,7 +1,3 @@
-export type DefaultMatchDto = {
-  id: number,
-  createdAt: Date
-}
 
 export type CreateMatchInputDto = {
   homeTeam: string,
@@ -10,4 +6,15 @@ export type CreateMatchInputDto = {
   awayTeamScore: number,
   matchDate: Date,
   winner: string
+}
+
+export type CreateMatchOutputDto = {
+  teams: {
+    homeTeam: string,
+    awayTeam: string
+  }
+  matchInfo: {
+    date: Date,
+    status: boolean
+  }
 }
