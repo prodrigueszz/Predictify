@@ -17,8 +17,8 @@ export class PredictionController {
   public static async postHandler(request: Request, response: Response): Promise<void> {
     const { authorId, matchId, homeTeamScore, awayTeamScore, winner, status } = request.body;
 
-    const CreateService = CreatePredictionUsercase.create(PredictionController.createRepository());
-    const output = await CreateService.execute({
+    const createService = CreatePredictionUsercase.create(PredictionController.createRepository());
+    const output = await createService.execute({
       authorId,
       matchId,
       homeTeamScore,

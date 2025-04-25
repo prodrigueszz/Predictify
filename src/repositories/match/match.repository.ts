@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { Match } from "../../domain/entities/match";
+import { PrismaClient } from "../../infra/generated/client";
 import { MatchGateway } from "./interface/match.gateway";
 
 export class PrismaMatchRepository implements MatchGateway{
@@ -26,5 +26,42 @@ export class PrismaMatchRepository implements MatchGateway{
         winner: matchInfo.winner
       }
     })
+  }
+
+  async delete(id: number) {
+    await this.client.match.delete({
+      where: {
+        id
+      }
+    })
+  }
+
+  async getAll(): Promise<Match[]> {
+    const matchList = await this.client.match.findMany();
+
+    const output = matchList.map( match => {
+      return Match.create(
+        match.homeTeam, match.awayTeam, match.homeTeamScore,
+        match.awayTeamScore, match.matchDate, match.winner, match.id
+      )
+    })
+
+    return output;
+  }
+
+  async findById(id: number): Promise<Match | undefined> {
+    const match = await this.client.match.findUnique({
+      where: {
+        id
+      }
+    })
+
+    if (match){
+      const output = Match.create(
+        match.homeTeam, match.awayTeam, match.homeTeamScore,
+        match.awayTeamScore, match.matchDate, match.winner, match.id 
+      )
+      return output;
+    }
   }
 }

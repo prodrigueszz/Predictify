@@ -40,6 +40,10 @@ export class Match {
     })
   }
 
+  get id(): number{
+    return this.id;
+  }
+
   get teams(){
     return this.props.teams;
   }

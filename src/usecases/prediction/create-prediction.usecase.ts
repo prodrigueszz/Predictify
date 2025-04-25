@@ -1,6 +1,6 @@
-import { CreatePredictionInputDto, CreatePredictionOutputDto } from "../../application/dtos/prediction.dto";
 import { Prediction } from "../../domain/entities/predictions";
 import { PredictionGateway } from "../../repositories/predictions/interface/prediction.gateway";
+import { CreatePredictionInputDto, CreatePredictionOutputDto } from "../dtos/prediction/prediction.dto";
 import { Usecase } from "../interface/usecase";
 
 export class CreatePredictionUsercase implements Usecase<CreatePredictionInputDto, CreatePredictionOutputDto> {

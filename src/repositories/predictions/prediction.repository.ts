@@ -1,6 +1,6 @@
-import { DefaultPredictionDto } from "../../application/dtos/prediction.dto";
 import { Prediction } from "../../domain/entities/predictions";
 import { PrismaClient } from "../../infra/generated/client";
+import { DefaultPredictionDto } from "../../usecases/dtos/prediction/prediction.dto";
 import { PredictionGateway } from "./interface/prediction.gateway";
 
 export class PrismaPredictionRepository implements PredictionGateway {

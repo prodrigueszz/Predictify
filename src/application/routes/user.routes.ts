@@ -3,7 +3,7 @@ import { UserController } from '../controllers/user.controller';
 
 const UserRouter = Router();
 
-UserRouter.get('/users/:id', UserController.getHandler);
+UserRouter.get('/users/:id', UserController.getByIdHandler);
 UserRouter.post('/users', UserController.postHandler);
 UserRouter.delete('/users/:id', UserController.deleteHandler);
 

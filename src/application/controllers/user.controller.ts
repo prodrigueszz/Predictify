@@ -19,9 +19,9 @@ export class UserController {
   public static async postHandler(request: Request, response: Response): Promise<void> {
     const { name, email, password } = request.body;
 
-    const CreateService = CreateUserUsecase.create(UserController.createRepository());
+    const createService = CreateUserUsecase.create(UserController.createRepository());
 
-    const { createdAt } = await CreateService.execute({ name, email, password });
+    const { createdAt } = await createService.execute({ name, email, password });
 
     response.status(201).json({
       message: "sucess",
@@ -41,17 +41,16 @@ export class UserController {
       }) 
     }
 
-    const DeleteService = DeleteUserUsecase.create(UserController.createRepository());
+    const deleteService = DeleteUserUsecase.create(UserController.createRepository());
 
-    const { deletedAt } = await DeleteService.execute({ id: idFromRequest });
+    await deleteService.execute({ id: idFromRequest });
 
     response.status(200).json({
       message: "sucess",
-      deletedAt: id
     })
   }
 
-  public static async getHandler(request: Request, response: Response): Promise<void> {
+  public static async getByIdHandler(request: Request, response: Response): Promise<void> {
     const { id } = request.params;
 
     const numberId = Number(id)
@@ -65,9 +64,9 @@ export class UserController {
       return
     }
 
-    const FindService = FindUserUsecase.create(UserController.createRepository());
+    const findService = FindUserUsecase.create(UserController.createRepository());
 
-    const { name, email } = await FindService.execute({ id: numberId });
+    const { name, email } = await findService.execute({ id: numberId });
 
     response.status(200).json({
       message: "sucess",
