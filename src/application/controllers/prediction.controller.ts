@@ -2,11 +2,14 @@ import { Request, Response } from "express";
 import { prisma } from "../../infra/config/prisma.client";
 import { PrismaPredictionRepository } from "../../repositories/predictions/prediction.repository";
 import { CreatePredictionUsercase } from "../../usecases/prediction/create-prediction.usecase";
+import { DeletePredictionUsecase } from "../../usecases/prediction/delete-prediction.usecase";
+import FindPredictionUsecase from "../../usecases/prediction/find-prediction.usecase";
+import ListPredictionUsecase from "../../usecases/prediction/list-prediction.usecase";
 
 export class PredictionController {
   private static repository: PrismaPredictionRepository;
 
-  private static createRepository(): PrismaPredictionRepository {
+  private static getRepository(): PrismaPredictionRepository {
     if(!PredictionController.repository){
       PredictionController.repository = PrismaPredictionRepository.create(prisma);
     }
@@ -14,10 +17,10 @@ export class PredictionController {
     return PredictionController.repository;
   }
 
-  public static async postHandler(request: Request, response: Response): Promise<void> {
+  public static async createHandler(request: Request, response: Response): Promise<void> {
     const { authorId, matchId, homeTeamScore, awayTeamScore, winner, status } = request.body;
 
-    const createService = CreatePredictionUsercase.create(PredictionController.createRepository());
+    const createService = CreatePredictionUsercase.create(PredictionController.getRepository());
     const output = await createService.execute({
       authorId,
       matchId,
@@ -27,15 +30,79 @@ export class PredictionController {
       status
     })
 
-    const { id, createdAt } = output;
+    const { createdAt } = output;
 
     response.status(201).json({
-      message: "sucess",
+      message: "success",
       prediction_properties: {
-        id,
         createdAt,
         status
       } 
+    })
+  }
+
+  public static async getByIdHandler(request: Request, response: Response): Promise<void> {
+    const { id } = request.params;
+
+    const idFromRequest = Number(id);
+    
+    if (isNaN(idFromRequest)) {
+      response.status(400).json({
+        message: "error",
+        error: "This id is not valid"
+      }) 
+      return;
+    }
+
+    const FindService = FindPredictionUsecase.create(PredictionController.getRepository());
+
+    const { predictionInfo } = await FindService.execute({ id: idFromRequest });
+
+    response.status(200).json({
+      message: "success",
+      prediction: {
+        authorId: predictionInfo.authorId,
+        matchId: predictionInfo.matchId,
+        scoreboard: {
+          homeTeamScore: predictionInfo.scoreboard.homeTeamScore,
+          awayTeamScore: predictionInfo.scoreboard.awayTeamScore
+        },
+        createdAt: predictionInfo.createdAt
+      }
+    })
+  }
+
+  public static async getAllHandler(request: Request, response: Response): Promise<void> {
+    const listService = ListPredictionUsecase.create(PredictionController.getRepository());
+
+    const predictionList = await listService.execute();
+
+    response.status(200).json({
+      message: "success",
+      predictions: predictionList
+    })
+  }
+
+  public static async deleteHandler(request: Request, response: Response): Promise<void> {
+    const { id } = request.params;
+
+    const idFromRequest = Number(id);
+    
+    if (isNaN(idFromRequest)) {
+      response.status(400).json({
+        message: "error",
+        error: "This id is not valid"
+      }) 
+      return;
+    }
+
+    const deleteService = DeletePredictionUsecase.create(PredictionController.getRepository());
+
+    await deleteService.execute({ id: idFromRequest });
+
+    response.status(200).json({
+      message: "success",
+      deletedAt: new Date().toISOString
     })
   }
 }

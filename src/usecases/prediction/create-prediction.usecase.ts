@@ -21,12 +21,10 @@ export class CreatePredictionUsercase implements Usecase<CreatePredictionInputDt
       winner,
     )
 
-    const { id, createdAt } = await this.repository.save(prediction);
+    await this.repository.save(prediction);
 
     const output: CreatePredictionOutputDto = { 
-      status, 
-      id, 
-      createdAt 
+      createdAt: new Date() 
     }
 
     return output;

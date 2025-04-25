@@ -1,8 +1,3 @@
-export type DefaultPredictionDto = {
-  id: number,
-  createdAt: Date
-}
-
 export type CreatePredictionInputDto = {
   id?: number,
   authorId: number,
@@ -15,7 +10,29 @@ export type CreatePredictionInputDto = {
 }
 
 export type CreatePredictionOutputDto = {
-  status: boolean,
-  createdAt: Date,
+  createdAt: Date
+}
+
+export type FindPredictionInputDto = {
   id: number
+}
+
+export type FindPredictionOutputDto = {
+  predictionInfo: {
+    matchId: number,
+    authorId: number,
+    createdAt?: Date,
+    scoreboard: {
+      homeTeamScore: number,
+      awayTeamScore: number
+    }
+  }
+}
+
+export type DeletePredictionInputDto = {
+  id: number
+}
+
+export type DeletePredictionOutputDto = {
+  deletedAt: Date
 }

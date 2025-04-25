@@ -51,4 +51,8 @@ export class Prediction {
   get winner(){
     return this.props.winner;
   }
+
+  get date(){
+    return this.props.createdAt;
+  }
 }

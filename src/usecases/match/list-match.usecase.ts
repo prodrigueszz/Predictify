@@ -9,7 +9,7 @@ export class ListMatchUsecase {
   }
 
   async execute(): Promise<Match[]>{
-    const matchList: Match[] = await this.repository.getAll();
+    const matchList = await this.repository.getAll();
 
     return matchList;
   }

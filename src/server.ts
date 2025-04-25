@@ -14,17 +14,15 @@ app.use(MatchRouter);
 
 app.get('/', UserRouter);
 app.post('/', UserRouter);
-app.put('/', UserRouter);
-app.patch('/', UserRouter);
 app.delete('/', UserRouter);
 
 app.get('/', PredictionRouter);
 app.post('/', PredictionRouter);
-app.put('/', PredictionRouter);
-app.patch('/', PredictionRouter);
 app.delete('/', PredictionRouter);
 
 app.post('/', MatchRouter);
+app.get('/', MatchRouter);
+app.delete('/', MatchRouter);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

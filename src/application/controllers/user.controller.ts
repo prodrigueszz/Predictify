@@ -16,7 +16,7 @@ export class UserController {
     return UserController.repository;
   }
 
-  public static async postHandler(request: Request, response: Response): Promise<void> {
+  public static async createHandler(request: Request, response: Response): Promise<void> {
     const { name, email, password } = request.body;
 
     const createService = CreateUserUsecase.create(UserController.createRepository());
@@ -24,7 +24,7 @@ export class UserController {
     const { createdAt } = await createService.execute({ name, email, password });
 
     response.status(201).json({
-      message: "sucess",
+      message: "success",
       createdAt: createdAt
     })
   }
@@ -38,7 +38,8 @@ export class UserController {
       response.status(400).json({
         message: "error",
         error: "This id is not valid"
-      }) 
+      })
+      return; 
     }
 
     const deleteService = DeleteUserUsecase.create(UserController.createRepository());
@@ -46,7 +47,7 @@ export class UserController {
     await deleteService.execute({ id: idFromRequest });
 
     response.status(200).json({
-      message: "sucess",
+      message: "success",
     })
   }
 
@@ -69,7 +70,7 @@ export class UserController {
     const { name, email } = await findService.execute({ id: numberId });
 
     response.status(200).json({
-      message: "sucess",
+      message: "success",
       user: {
         name,
         email
