@@ -1,5 +1,5 @@
-import { UserGateway } from "../../repositories/user/interface/user.gateway";
-import { FindUserInputDto, FindUserOutputDto } from "../dtos/user/user.dto";
+import { FindUserInputDto, FindUserOutputDto } from "../../../presentation/dtos/user/user.dto";
+import { UserGateway } from "../../../repositories/user/interface/user.gateway";
 import { Usecase } from "../interface/usecase";
 
 export class FindUserUsecase implements Usecase<FindUserInputDto, FindUserOutputDto> {

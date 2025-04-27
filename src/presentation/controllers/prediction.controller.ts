@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
+import { CreatePredictionUsercase } from "../../domain/usecases/prediction/create-prediction.usecase";
+import { DeletePredictionUsecase } from "../../domain/usecases/prediction/delete-prediction.usecase";
+import FindPredictionUsecase from "../../domain/usecases/prediction/find-prediction.usecase";
+import ListPredictionUsecase from "../../domain/usecases/prediction/list-prediction.usecase";
 import { prisma } from "../../infra/config/prisma.client";
 import { PrismaPredictionRepository } from "../../repositories/predictions/prediction.repository";
-import { CreatePredictionUsercase } from "../../usecases/prediction/create-prediction.usecase";
-import { DeletePredictionUsecase } from "../../usecases/prediction/delete-prediction.usecase";
-import FindPredictionUsecase from "../../usecases/prediction/find-prediction.usecase";
-import ListPredictionUsecase from "../../usecases/prediction/list-prediction.usecase";
 
 export class PredictionController {
   private static repository: PrismaPredictionRepository;

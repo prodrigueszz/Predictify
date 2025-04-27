@@ -1,5 +1,5 @@
-import { Match } from "../../domain/entities/match";
-import { MatchGateway } from "../../repositories/match/interface/match.gateway";
+import { MatchGateway } from "../../../repositories/match/interface/match.gateway";
+import { Match } from "../../entities/match";
 
 export class ListMatchUsecase {
   private constructor(private readonly repository: MatchGateway){}

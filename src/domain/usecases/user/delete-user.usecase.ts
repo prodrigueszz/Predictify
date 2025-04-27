@@ -1,5 +1,5 @@
-import { UserGateway } from "../../repositories/user/interface/user.gateway";
-import { DeleteUserInputDto, DeleteUserOutputDto } from "../dtos/user/user.dto";
+import { DeleteUserInputDto, DeleteUserOutputDto } from "../../../presentation/dtos/user/user.dto";
+import { UserGateway } from "../../../repositories/user/interface/user.gateway";
 import { Usecase } from "../interface/usecase";
 
 export class DeleteUserUsecase  implements Usecase<DeleteUserInputDto, DeleteUserOutputDto> {

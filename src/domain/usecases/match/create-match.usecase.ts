@@ -1,6 +1,6 @@
-import { Match } from "../../domain/entities/match";
-import { MatchGateway } from "../../repositories/match/interface/match.gateway";
-import { CreateMatchInputDto, CreateMatchOutputDto } from "../dtos/match/match.dto";
+import { CreateMatchInputDto, CreateMatchOutputDto } from "../../../presentation/dtos/match/match.dto";
+import { MatchGateway } from "../../../repositories/match/interface/match.gateway";
+import { Match } from "../../entities/match";
 import { Usecase } from "../interface/usecase";
 
 export class CreateMatchUsecase implements Usecase<CreateMatchInputDto, CreateMatchOutputDto> {

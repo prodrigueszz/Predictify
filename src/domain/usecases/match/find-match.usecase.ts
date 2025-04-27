@@ -1,5 +1,5 @@
-import { MatchGateway } from "../../repositories/match/interface/match.gateway";
-import { FindMatchInputDto, FindMatchOutputDto } from "../dtos/match/match.dto";
+import { FindMatchInputDto, FindMatchOutputDto } from "../../../presentation/dtos/match/match.dto";
+import { MatchGateway } from "../../../repositories/match/interface/match.gateway";
 import { Usecase } from "../interface/usecase";
 
 export class FindMatchUsecase implements Usecase<FindMatchInputDto, FindMatchOutputDto> {

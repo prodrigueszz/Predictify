@@ -1,5 +1,5 @@
-import { PredictionGateway } from "../../repositories/predictions/interface/prediction.gateway";
-import { FindPredictionInputDto, FindPredictionOutputDto } from "../dtos/prediction/prediction.dto";
+import { FindPredictionInputDto, FindPredictionOutputDto } from "../../../presentation/dtos/prediction/prediction.dto";
+import { PredictionGateway } from "../../../repositories/predictions/interface/prediction.gateway";
 import { Usecase } from "../interface/usecase";
 
 export default class FindPredictionUsecase implements Usecase<FindPredictionInputDto, FindPredictionOutputDto> {

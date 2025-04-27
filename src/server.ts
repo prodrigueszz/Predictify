@@ -1,8 +1,8 @@
 import express from 'express';
-import MatchRouter from './application/routes/match.routes';
-import PredictionRouter from './application/routes/prediction.routes';
-import UserRouter from './application/routes/user.routes';
 import './infra/config/dotenv';
+import MatchRouter from './presentation/routes/match.routes';
+import PredictionRouter from './presentation/routes/prediction.routes';
+import UserRouter from './presentation/routes/user.routes';
 
 const app = express();
 const port = 3000;

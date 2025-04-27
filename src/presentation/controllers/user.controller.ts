@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
+import { CreateUserUsecase } from "../../domain/usecases/user/create.user.usecase";
+import { DeleteUserUsecase } from "../../domain/usecases/user/delete-user.usecase";
+import { FindUserUsecase } from "../../domain/usecases/user/find-user.usecase";
 import { prisma } from "../../infra/config/prisma.client";
 import { PrismaUserRepository } from "../../repositories/user/user.repository";
-import { CreateUserUsecase } from "../../usecases/user/create.user.usecase";
-import { DeleteUserUsecase } from "../../usecases/user/delete-user.usecase";
-import { FindUserUsecase } from "../../usecases/user/find-user.usecase";
 
 export class UserController {
   private static repository: PrismaUserRepository;

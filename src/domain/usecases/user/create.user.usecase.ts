@@ -1,6 +1,6 @@
-import { User } from "../../domain/entities/user";
-import { UserGateway } from "../../repositories/user/interface/user.gateway";
-import { CreateUserInputDto, CreateUserOutputDto } from "../dtos/user/user.dto";
+import { CreateUserInputDto, CreateUserOutputDto } from "../../../presentation/dtos/user/user.dto";
+import { UserGateway } from "../../../repositories/user/interface/user.gateway";
+import { User } from "../../entities/user";
 import { Usecase } from "../interface/usecase";
 
 export class CreateUserUsecase implements Usecase<CreateUserInputDto, CreateUserOutputDto> {

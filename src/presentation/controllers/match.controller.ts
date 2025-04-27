@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
+import { CreateMatchUsecase } from '../../domain/usecases/match/create-match.usecase';
+import { DeleteMatchUsecase } from '../../domain/usecases/match/delete-match.usecase';
+import { FindMatchUsecase } from '../../domain/usecases/match/find-match.usecase';
+import { ListMatchUsecase } from '../../domain/usecases/match/list-match.usecase';
 import { prisma } from '../../infra/config/prisma.client';
 import { PrismaMatchRepository } from '../../repositories/match/match.repository';
-import { CreateMatchUsecase } from '../../usecases/match/create-match.usecase';
-import { DeleteMatchUsecase } from '../../usecases/match/delete-match.usecase';
-import { FindMatchUsecase } from '../../usecases/match/find-match.usecase';
-import { ListMatchUsecase } from '../../usecases/match/list-match.usecase';
 
 export class MatchController {
   private static repository: PrismaMatchRepository;

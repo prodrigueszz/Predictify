@@ -1,5 +1,5 @@
-import { PredictionGateway } from "../../repositories/predictions/interface/prediction.gateway";
-import { DeletePredictionInputDto, DeletePredictionOutputDto } from "../dtos/prediction/prediction.dto";
+import { DeletePredictionInputDto, DeletePredictionOutputDto } from "../../../presentation/dtos/prediction/prediction.dto";
+import { PredictionGateway } from "../../../repositories/predictions/interface/prediction.gateway";
 import { Usecase } from "../interface/usecase";
 
 export class DeletePredictionUsecase implements Usecase<DeletePredictionInputDto, DeletePredictionOutputDto> {

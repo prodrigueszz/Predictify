@@ -1,5 +1,5 @@
-import { Prediction } from "../../domain/entities/predictions";
-import { PredictionGateway } from "../../repositories/predictions/interface/prediction.gateway";
+import { PredictionGateway } from "../../../repositories/predictions/interface/prediction.gateway";
+import { Prediction } from "../../entities/predictions";
 
 export default class ListPredictionUsecase {
   private constructor(private readonly repository: PredictionGateway){}

@@ -1,5 +1,5 @@
-import { MatchGateway } from "../../repositories/match/interface/match.gateway";
-import { DeleteMatchInputDto, DeleteMatchOutputDto } from "../dtos/match/match.dto";
+import { DeleteMatchInputDto, DeleteMatchOutputDto } from "../../../presentation/dtos/match/match.dto";
+import { MatchGateway } from "../../../repositories/match/interface/match.gateway";
 import { Usecase } from "../interface/usecase";
 
 export class DeleteMatchUsecase implements Usecase<DeleteMatchInputDto, DeleteMatchOutputDto> {
