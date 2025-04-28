@@ -9,6 +9,7 @@ export class PrismaMatchRepository implements MatchGateway{
     const { teams, score, matchInfo } = match;
 
     const matchDate = matchInfo.date;
+    
     matchDate.toISOString;
 
     await this.client.match.create({
