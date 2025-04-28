@@ -22,9 +22,8 @@ Construir uma aplicação backend sólida para praticar conceitos de arquitetura
 ## Futuras Melhorias
 
 - Integração com APIs externas para atualização automática de resultados de partidas
-- Implementação de autenticação via OAuth (Google, GitHub)
+- Implementação de autenticação
 - Validação e sanitização de dados mais robustas
-- Deploy do backend em ambiente de produção (Railway, Vercel, etc.)
 - Melhorias no sistema de pontuação (regras dinâmicas por campeonato)
 - Implementação de testes automatizados no futuro
 
