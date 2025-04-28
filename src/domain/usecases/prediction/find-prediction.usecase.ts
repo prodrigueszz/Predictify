@@ -1,13 +1,9 @@
 import { FindPredictionInputDto, FindPredictionOutputDto } from "../../../presentation/dtos/prediction/prediction.dto";
 import { PredictionGateway } from "../../../repositories/predictions/interface/prediction.gateway";
-import { Usecase } from "../interface/usecase";
+import { Usecase } from "../../interfaces/usecase";
 
 export default class FindPredictionUsecase implements Usecase<FindPredictionInputDto, FindPredictionOutputDto> {
-  private constructor(private readonly repository: PredictionGateway){}
-
-  public static create(repository: PredictionGateway){
-    return new FindPredictionUsecase(repository);
-  }
+  public constructor(private readonly repository: PredictionGateway){}
 
   async execute(input: FindPredictionInputDto): Promise<FindPredictionOutputDto> {
     const { id } = input;

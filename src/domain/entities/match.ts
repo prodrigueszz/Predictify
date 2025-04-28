@@ -1,3 +1,4 @@
+
 export type MatchProps = {
   id?: number,
   teams: {
@@ -10,8 +11,8 @@ export type MatchProps = {
   }
   matchInfo: {
     date: Date,
-    status: boolean,
-    winner: string
+    status: "finished" | "upcoming",
+    winner: string 
   }
 }
 
@@ -34,7 +35,7 @@ export class Match {
       },
       matchInfo: {
         date,
-        status: false,
+        status: "upcoming",
         winner
       }
     })
@@ -56,7 +57,18 @@ export class Match {
     return this.props.matchInfo;
   }
 
-  public isOver(){
-    return this.matchInfo.status;
+  public isFinished(){
+    const now = new Date();
+
+    if (now >= this.matchInfo.date){
+      return true
+    }
+    return false;
+  }
+
+  public refreshStatus() {
+    if (this.isFinished()){
+      this.matchInfo.status = 'finished';
+    } 
   }
 }

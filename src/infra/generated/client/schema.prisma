@@ -22,16 +22,16 @@ model User {
 
 model Prediction {
   id            Int      @id @default(autoincrement())
-  author        User     @relation(fields: [authorId], references: [id])
-  authorId      Int
-  matchId       Int
+  match_id      Int      @map("matchId")
+  author_id     Int      @map("authorId")
+  author        User     @relation(fields: [author_id], references: [id])
+  match         Match    @relation(fields: [match_id], references: [id])
   homeTeamScore Int
   awayTeamScore Int
   winner        String
-  status        Boolean
+  status        String
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-  match         Match    @relation(fields: [matchId], references: [id])
 
   @@map("predictions")
 }
@@ -43,7 +43,7 @@ model Match {
   homeTeamScore Int
   awayTeamScore Int
   matchDate     DateTime
-  status        Boolean
+  status        String
   createdAt     DateTime     @default(now())
   winner        String
   predictions   Prediction[]

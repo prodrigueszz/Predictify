@@ -1,14 +1,10 @@
 import { CreateMatchInputDto, CreateMatchOutputDto } from "../../../presentation/dtos/match/match.dto";
 import { MatchGateway } from "../../../repositories/match/interface/match.gateway";
 import { Match } from "../../entities/match";
-import { Usecase } from "../interface/usecase";
+import { Usecase } from "../../interfaces/usecase";
 
 export class CreateMatchUsecase implements Usecase<CreateMatchInputDto, CreateMatchOutputDto> {
-  private constructor(private readonly repository: MatchGateway){}
-
-  public static create(repository: MatchGateway){
-    return new CreateMatchUsecase(repository);
-  }
+  public constructor(private readonly repository: MatchGateway){}
 
   async execute(input: CreateMatchInputDto): Promise<CreateMatchOutputDto> {
     const { homeTeam, awayTeam, homeTeamScore, awayTeamScore, matchDate, winner } = input;

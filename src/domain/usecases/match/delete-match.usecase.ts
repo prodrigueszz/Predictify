@@ -1,13 +1,9 @@
 import { DeleteMatchInputDto, DeleteMatchOutputDto } from "../../../presentation/dtos/match/match.dto";
 import { MatchGateway } from "../../../repositories/match/interface/match.gateway";
-import { Usecase } from "../interface/usecase";
+import { Usecase } from "../../interfaces/usecase";
 
 export class DeleteMatchUsecase implements Usecase<DeleteMatchInputDto, DeleteMatchOutputDto> {
-  private constructor(private readonly repository: MatchGateway){}
-  
-  public static create(repository: MatchGateway){
-    return new DeleteMatchUsecase(repository);
-  }
+  public constructor(private readonly repository: MatchGateway){}
 
   async execute(input: DeleteMatchInputDto): Promise<DeleteMatchOutputDto> {
     const { id } = input;

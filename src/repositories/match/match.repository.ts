@@ -3,11 +3,7 @@ import { PrismaClient } from "../../infra/generated/client";
 import { MatchGateway } from "./interface/match.gateway";
 
 export class PrismaMatchRepository implements MatchGateway{
-  private constructor(private readonly client: PrismaClient){}
-
-  public static create(client: PrismaClient){
-    return new PrismaMatchRepository(client);
-  }
+  public constructor(private readonly client: PrismaClient){}
 
   async save(match: Match): Promise<void>{
     const { teams, score, matchInfo } = match;

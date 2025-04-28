@@ -10,7 +10,7 @@ export class UserController {
 
   private static createRepository(): PrismaUserRepository {
     if(!UserController.repository){
-      UserController.repository = PrismaUserRepository.create(prisma);
+      UserController.repository = new PrismaUserRepository(prisma);
     }
 
     return UserController.repository;
@@ -19,7 +19,7 @@ export class UserController {
   public static async createHandler(request: Request, response: Response): Promise<void> {
     const { name, email, password } = request.body;
 
-    const createService = CreateUserUsecase.create(UserController.createRepository());
+    const createService = new CreateUserUsecase(UserController.createRepository());
 
     const { createdAt } = await createService.execute({ name, email, password });
 
@@ -42,7 +42,7 @@ export class UserController {
       return; 
     }
 
-    const deleteService = DeleteUserUsecase.create(UserController.createRepository());
+    const deleteService = new DeleteUserUsecase(UserController.createRepository());
 
     await deleteService.execute({ id: idFromRequest });
 
@@ -65,7 +65,7 @@ export class UserController {
       return
     }
 
-    const findService = FindUserUsecase.create(UserController.createRepository());
+    const findService = new FindUserUsecase(UserController.createRepository());
 
     const { name, email } = await findService.execute({ id: numberId });
 

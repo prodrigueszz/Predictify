@@ -3,12 +3,7 @@ import { PrismaClient } from "../../infra/generated/client";
 import { UserGateway } from "./interface/user.gateway";
 
 export class PrismaUserRepository implements UserGateway {
-  private constructor(private readonly client: PrismaClient){}
-
-  public static create(client: PrismaClient){
-    return new PrismaUserRepository(client);
-  }
-
+  public constructor(private readonly client: PrismaClient){}
   async save(user: User){
     await this.client.user.create({
       data: {

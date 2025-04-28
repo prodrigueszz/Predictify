@@ -128,8 +128,8 @@ exports.Prisma.UserScalarFieldEnum = {
 
 exports.Prisma.PredictionScalarFieldEnum = {
   id: 'id',
-  authorId: 'authorId',
-  matchId: 'matchId',
+  match_id: 'match_id',
+  author_id: 'author_id',
   homeTeamScore: 'homeTeamScore',
   awayTeamScore: 'awayTeamScore',
   winner: 'winner',

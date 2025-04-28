@@ -11,7 +11,7 @@ export class MatchController {
 
   private static getRepository(): PrismaMatchRepository {
       if(!MatchController.repository){
-        MatchController.repository = PrismaMatchRepository.create(prisma);
+        MatchController.repository = new PrismaMatchRepository(prisma);
       }
   
       return MatchController.repository;
@@ -20,7 +20,7 @@ export class MatchController {
   static async createMatchHandler(request: Request, response: Response): Promise<void> {
     const { homeTeam, awayTeam, homeTeamScore, awayTeamScore, matchDate, winner } = request.body;
 
-    const createService = CreateMatchUsecase.create(MatchController.getRepository());
+    const createService = new CreateMatchUsecase(MatchController.getRepository());
     
     const output = await createService.execute({
       homeTeam, 
@@ -59,7 +59,7 @@ export class MatchController {
       return;
     }
     
-    const findService = FindMatchUsecase.create(MatchController.getRepository());
+    const findService = new FindMatchUsecase(MatchController.getRepository());
     
     await findService.execute({ id: idFromRequest });
     
@@ -81,7 +81,7 @@ export class MatchController {
       }) 
       return;
     }
-    const deleteService = DeleteMatchUsecase.create(MatchController.getRepository());
+    const deleteService = new DeleteMatchUsecase(MatchController.getRepository());
 
     await deleteService.execute({ id: idFromRequest });
 

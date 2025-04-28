@@ -3,11 +3,7 @@ import { PrismaClient } from "../../infra/generated/client";
 import { PredictionGateway } from "./interface/prediction.gateway";
 
 export class PrismaPredictionRepository implements PredictionGateway {
-  private constructor(private readonly client: PrismaClient){}
-
-  public static create(client: PrismaClient){
-    return new PrismaPredictionRepository(client);
-  }
+  public constructor(private readonly client: PrismaClient){}
 
   async save(prediction: Prediction): Promise<void> {
     const { authorId, matchId, scoreboard, winner, status } = prediction;

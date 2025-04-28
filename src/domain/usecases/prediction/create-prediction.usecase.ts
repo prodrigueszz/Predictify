@@ -1,15 +1,11 @@
 import { CreatePredictionInputDto, CreatePredictionOutputDto } from "../../../presentation/dtos/prediction/prediction.dto";
 import { PredictionGateway } from "../../../repositories/predictions/interface/prediction.gateway";
 import { Prediction } from "../../entities/predictions";
-import { Usecase } from "../interface/usecase";
+import { Usecase } from "../../interfaces/usecase";
 
 export class CreatePredictionUsercase implements Usecase<CreatePredictionInputDto, CreatePredictionOutputDto> {
-  private constructor(private readonly repository: PredictionGateway){}
-
-  public static create(repository: PredictionGateway){
-    return new CreatePredictionUsercase(repository);
-  }
-
+  public constructor(private readonly repository: PredictionGateway){}
+  
   async execute(input: CreatePredictionInputDto): Promise<CreatePredictionOutputDto> {
     const { authorId, matchId, homeTeamScore, awayTeamScore, winner, status } = input;
 

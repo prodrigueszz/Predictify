@@ -1,13 +1,9 @@
 import { FindMatchInputDto, FindMatchOutputDto } from "../../../presentation/dtos/match/match.dto";
 import { MatchGateway } from "../../../repositories/match/interface/match.gateway";
-import { Usecase } from "../interface/usecase";
+import { Usecase } from "../../interfaces/usecase";
 
 export class FindMatchUsecase implements Usecase<FindMatchInputDto, FindMatchOutputDto> {
-  private constructor(private readonly repository: MatchGateway){}
-  
-  public static create(repository: MatchGateway){
-    return new FindMatchUsecase(repository);
-  }
+  public constructor(private readonly repository: MatchGateway){}
 
   async execute(input: FindMatchInputDto): Promise<FindMatchOutputDto> {
     const { id } = input;

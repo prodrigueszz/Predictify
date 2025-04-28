@@ -15,7 +15,7 @@ export type CreateMatchOutputDto = {
   }
   matchInfo: {
     date: Date,
-    status: boolean
+    status: "finished" | "upcoming"
   }
 }
 

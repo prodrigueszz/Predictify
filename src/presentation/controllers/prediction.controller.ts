@@ -11,7 +11,7 @@ export class PredictionController {
 
   private static getRepository(): PrismaPredictionRepository {
     if(!PredictionController.repository){
-      PredictionController.repository = PrismaPredictionRepository.create(prisma);
+      PredictionController.repository = new PrismaPredictionRepository(prisma);
     }
 
     return PredictionController.repository;
@@ -20,7 +20,7 @@ export class PredictionController {
   public static async createHandler(request: Request, response: Response): Promise<void> {
     const { authorId, matchId, homeTeamScore, awayTeamScore, winner, status } = request.body;
 
-    const createService = CreatePredictionUsercase.create(PredictionController.getRepository());
+    const createService = new CreatePredictionUsercase(PredictionController.getRepository());
     const output = await createService.execute({
       authorId,
       matchId,
@@ -54,7 +54,7 @@ export class PredictionController {
       return;
     }
 
-    const FindService = FindPredictionUsecase.create(PredictionController.getRepository());
+    const FindService = new FindPredictionUsecase(PredictionController.getRepository());
 
     const { predictionInfo } = await FindService.execute({ id: idFromRequest });
 
@@ -96,7 +96,7 @@ export class PredictionController {
       return;
     }
 
-    const deleteService = DeletePredictionUsecase.create(PredictionController.getRepository());
+    const deleteService = new DeletePredictionUsecase(PredictionController.getRepository());
 
     await deleteService.execute({ id: idFromRequest });
 

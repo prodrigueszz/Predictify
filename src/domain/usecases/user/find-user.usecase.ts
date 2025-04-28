@@ -1,13 +1,9 @@
 import { FindUserInputDto, FindUserOutputDto } from "../../../presentation/dtos/user/user.dto";
 import { UserGateway } from "../../../repositories/user/interface/user.gateway";
-import { Usecase } from "../interface/usecase";
+import { Usecase } from "../../interfaces/usecase";
 
 export class FindUserUsecase implements Usecase<FindUserInputDto, FindUserOutputDto> {
-  private constructor(private readonly repository: UserGateway){}
-
-  public static create(repository: UserGateway){
-    return new FindUserUsecase(repository);
-  }
+  public constructor(private readonly repository: UserGateway){}
 
   async execute(input: FindUserInputDto): Promise<FindUserOutputDto> {
     const { id } = input;
