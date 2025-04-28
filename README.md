@@ -19,6 +19,15 @@ O projeto foi desenvolvido como estudo pessoal de backend e faz parte da integra
 ## Objetivo do Projeto
 Construir uma aplicação backend sólida para praticar conceitos de arquitetura limpa (Clean Architecture), princípios SOLID e integração com banco de dados, além de servir como base para um projeto completo (frontend + backend) no contexto universitário.
 
+## Futuras Melhorias
+
+- Integração com APIs externas para atualização automática de resultados de partidas
+- Implementação de autenticação via OAuth (Google, GitHub)
+- Validação e sanitização de dados mais robustas
+- Deploy do backend em ambiente de produção (Railway, Vercel, etc.)
+- Melhorias no sistema de pontuação (regras dinâmicas por campeonato)
+- Implementação de testes automatizados no futuro
+
 ## Como Rodar o Projeto
 ```bash
 # Clone o repositório
