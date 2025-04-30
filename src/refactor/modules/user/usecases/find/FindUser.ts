@@ -16,8 +16,17 @@ export class Finduser implements IFindUser {
 
   private resolverStrategy(input: FindUserDTO){
     const { email, id } = input;
-    //TODO Implementar resto da logica da strategy
-  }
+
+    if (email){
+      return this.strategies.get("email")!;
+    }
+
+    if (id){
+      return this.strategies.get("id")!;
+    }
+
+    throw new Error("No valid parameter for search has been given");
+  } 
 
   private async handleByEmail(input: FindUserDTO) {
     const { email } = input;
@@ -41,10 +50,7 @@ export class Finduser implements IFindUser {
   
 
   async execute(input: FindUserDTO): Promise<FindUserDTO> {
-    const { email, id } = input;
-
-    if(email){
-
-    } 
+    const strategy = this.resolverStrategy(input);
+    return strategy(input); 
   }
 }
