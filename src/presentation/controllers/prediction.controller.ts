@@ -3,7 +3,7 @@ import { CreatePredictionUsercase } from "../../domain/usecases/prediction/creat
 import { DeletePredictionUsecase } from "../../domain/usecases/prediction/delete-prediction.usecase";
 import FindPredictionUsecase from "../../domain/usecases/prediction/find-prediction.usecase";
 import ListPredictionUsecase from "../../domain/usecases/prediction/list-prediction.usecase";
-import { prisma } from "../../infra/config/prisma.client";
+import { prisma } from "../../refactor/modules/user/infra/config/prisma.client";
 import { PrismaPredictionRepository } from "../../repositories/predictions/prediction.repository";
 
 export class PredictionController {

@@ -3,7 +3,7 @@ import { CreateMatchUsecase } from '../../domain/usecases/match/create-match.use
 import { DeleteMatchUsecase } from '../../domain/usecases/match/delete-match.usecase';
 import { FindMatchUsecase } from '../../domain/usecases/match/find-match.usecase';
 import { ListMatchUsecase } from '../../domain/usecases/match/list-match.usecase';
-import { prisma } from '../../infra/config/prisma.client';
+import { prisma } from '../../refactor/modules/user/infra/config/prisma.client';
 import { PrismaMatchRepository } from '../../repositories/match/match.repository';
 
 export class MatchController {

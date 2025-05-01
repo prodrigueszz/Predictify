@@ -2,7 +2,7 @@ import { FindUserDTO } from "../../dtos/FindUserDTO";
 import { IUserRepository } from "../../interfaces/IUserRepository";
 import { IFindUser } from "./IFindUser";
 
-export class Finduser implements IFindUser {
+export class FindUser implements IFindUser {
   private strategies: Map<string, (input: FindUserDTO) => Promise<FindUserDTO>>;
   private userRepository: IUserRepository;
 
@@ -15,14 +15,11 @@ export class Finduser implements IFindUser {
   }
 
   private resolverStrategy(input: FindUserDTO){
-    const { email, id } = input;
-
-    if (email){
-      return this.strategies.get("email")!;
-    }
-
-    if (id){
-      return this.strategies.get("id")!;
+    for (const key of Object.keys(input)) {
+      const strategy = this.strategies.get(key);
+      if (strategy) {
+        return strategy;
+      }
     }
 
     throw new Error("No valid parameter for search has been given");

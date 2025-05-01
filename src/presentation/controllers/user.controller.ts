@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { CreateUserUsecase } from "../../domain/usecases/user/create.user.usecase";
 import { DeleteUserUsecase } from "../../domain/usecases/user/delete-user.usecase";
 import { FindUserUsecase } from "../../domain/usecases/user/find-user.usecase";
-import { prisma } from "../../infra/config/prisma.client";
+import { prisma } from "../../refactor/modules/user/infra/config/prisma.client";
 import { PrismaUserRepository } from "../../repositories/user/user.repository";
 
 export class UserController {

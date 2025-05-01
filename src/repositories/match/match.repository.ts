@@ -1,5 +1,5 @@
 import { Match } from "../../domain/entities/match";
-import { PrismaClient } from "../../infra/generated/client";
+import { PrismaClient } from "../../refactor/modules/generated/client";
 import { MatchGateway } from "./interface/match.gateway";
 
 export class PrismaMatchRepository implements MatchGateway{

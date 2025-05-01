@@ -1,5 +1,5 @@
 import { Prediction } from "../../domain/entities/predictions";
-import { PrismaClient } from "../../infra/generated/client";
+import { PrismaClient } from "../../refactor/modules/generated/client";
 import { PredictionGateway } from "./interface/prediction.gateway";
 
 export class PrismaPredictionRepository implements PredictionGateway {

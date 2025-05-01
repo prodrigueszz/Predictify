@@ -1,5 +1,5 @@
 import { User } from "../../domain/entities/user";
-import { PrismaClient } from "../../infra/generated/client";
+import { PrismaClient } from "../../refactor/modules/generated/client";
 import { UserGateway } from "./interface/user.gateway";
 
 export class PrismaUserRepository implements UserGateway {
