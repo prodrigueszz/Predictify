@@ -1,6 +1,8 @@
 import { App } from './app';
-import './refactor/modules/config/dotenv';
+import './modules/config/dotenv';
 
 const server = new App();
 
+server.config();
+server.routes();
 server.listen();

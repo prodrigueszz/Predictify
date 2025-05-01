@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import makeFindUser from "../../usecases/find/makeFindUser";
 
-const FindController = async (req: Request, res: Response) => {
+export const FindController = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   const findUser = makeFindUser();

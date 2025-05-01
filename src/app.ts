@@ -1,20 +1,18 @@
 import express, { Application } from "express";
-import userRouter from './refactor/modules/user/api/routes/UserRouter';
+import userRouter from './modules/user/api/routes/UserRouter';
 
 export class App {
   public app: Application;
 
   constructor(){
     this.app = express();
-    this.routes();
-    this.config();
   }
 
-  private routes(): void {
-    this.app.use('/users', userRouter);
+  public routes(): void {
+    this.app.use('/', userRouter);
   }
 
-  private config(): void {
+  public config(): void {
     this.app.use(express.json());
   }
 
