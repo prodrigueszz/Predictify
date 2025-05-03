@@ -35,7 +35,9 @@ const ListController = async (req: Request, res: Response) => {
     })
   }
 
-  const matchList = await listMatch.execute(range as unknown as number);
+  const rangeAsNumber = Number(range);
+
+  const matchList = await listMatch.execute(rangeAsNumber);
   const response = matchList.map(match => {
     return new Match({
       teams: {

@@ -9,7 +9,9 @@ const SelectController = async (req: Request, res: Response) => {
 
   const selectMatch = makeSelectMatch();
 
-  const match = await selectMatch.execute({ id: id as unknown as number })
+  const idAsNumber = Number(id);
+
+  const match = await selectMatch.execute({ id: idAsNumber })
 
   res.status(200).json({
     message: "success",

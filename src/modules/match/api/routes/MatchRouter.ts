@@ -5,8 +5,8 @@ import SelectController from '../controllers/SelectMatchController';
 
 const router = Router();
 
-router.get('/match/:range', ListController);
-router.get('/match', ListController);
+router.get('/match/list/:range', ListController);
+router.get('/match/list', ListController);
 router.post('/match', CreateController);
 router.get('/match/:id', SelectController);
 
