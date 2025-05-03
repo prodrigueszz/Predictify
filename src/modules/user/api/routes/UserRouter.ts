@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { CreateController } from '../controllers/CreateController';
-import { DeleteController } from '../controllers/DeleteController';
+import { CreateController } from '../controllers/CreateUserController';
+import { DeleteController } from '../controllers/DeleteUserController';
 import { FindController } from '../controllers/FindUserController';
-import { UpdateController } from '../controllers/UpdateController';
+import { UpdateController } from '../controllers/UpdateUserController';
 
 
 const router = Router();

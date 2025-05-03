@@ -1,4 +1,5 @@
 import express, { Application } from "express";
+import matchRouter from './modules/match/api/routes/MatchRouter';
 import userRouter from './modules/user/api/routes/UserRouter';
 
 export class App {
@@ -10,6 +11,7 @@ export class App {
 
   public routes(): void {
     this.app.use('/', userRouter);
+    this.app.use('/', matchRouter);
   }
 
   public config(): void {
