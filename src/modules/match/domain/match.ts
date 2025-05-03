@@ -20,6 +20,7 @@ export class Match {
 
   public constructor(props: MatchProperties){
     this.matchProperties = props;
+    this.matchProperties.matchInfo.winner = this.defineWinner()
   }
 
   get id(){
@@ -40,11 +41,11 @@ export class Match {
 
   public defineWinner(){
     if (this.score.home_goals > this.score.away_goals){
-      this.info.winner = this.teams.home;
+      return this.teams.home;
     } else if (this.score.away_goals > this.score.home_goals){
-      this.info.winner = this.teams.away;
+      return this.teams.away;
     } else {
-      this.info.winner = "Draw"
+      return "Draw"
     }   
   }
 

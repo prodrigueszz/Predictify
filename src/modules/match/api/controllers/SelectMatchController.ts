@@ -18,3 +18,5 @@ const SelectController = async (req: Request, res: Response) => {
     }
   })
 }
+
+export default SelectController;

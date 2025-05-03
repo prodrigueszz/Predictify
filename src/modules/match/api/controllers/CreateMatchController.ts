@@ -9,18 +9,24 @@ export const CreateController = async (req: Request, res: Response) => {
     
     const createMatch = makeCreateMatch();
 
+    const date: Date = info.date;
+
+    date.toISOString;
+
     await createMatch.execute({
       home_team: teams.home_team,
       away_team: teams.away_team,
       home_goals: score.home_goals,
       away_goals: score.away_goals,
       status: info.status,
-      date: info.date
+      date: date
     });
 
     res.status(201).json({
       message: "Match created"
     })
+    
+    return;
   }
 
   res.status(400).json({
